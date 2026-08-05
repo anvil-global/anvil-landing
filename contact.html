@@ -516,18 +516,18 @@
       <div class="section-kicker">Enquiries</div>
       <div class="section-title">Tell us what you're protecting.</div>
       <p class="section-intro">Every engagement starts with a confidential conversation. Fill this in and we'll be in touch.</p>
-      <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.contact-note').style.display='block';">
+      <form class="contact-form" id="enquiryForm" onsubmit="return sendEnquiry(event)">
         <div>
           <label for="name">Name</label>
-          <input id="name" type="text" required>
+          <input id="name" name="name" type="text" required>
         </div>
         <div>
           <label for="number">Number</label>
-          <input id="number" type="tel" required>
+          <input id="number" name="number" type="tel" required>
         </div>
         <div>
           <label for="service">Chosen Service</label>
-          <select id="service" required>
+          <select id="service" name="service" required>
             <option value="" disabled selected>Select a service</option>
             <option>Close Protection</option>
             <option>Driving</option>
@@ -543,9 +543,43 @@
         </div>
         <button class="btn-primary" type="submit" style="border:none; cursor:pointer;">Submit Enquiry</button>
       </form>
-      <p class="contact-note" style="display:none;">Form submission endpoint not yet connected — wire this up once your enquiry handling process (email/CRM) is decided.</p>
+      <p class="contact-note" id="contactNote" style="display:none;"></p>
     </div>
   </section>
+
+  <script>
+    function sendEnquiry(e) {
+      e.preventDefault();
+      const form = document.getElementById('enquiryForm');
+      const note = document.getElementById('contactNote');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      fetch('https://formspree.io/f/mljreeap', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          note.textContent = "Thank you — your enquiry has been sent. We'll be in touch shortly.";
+          note.style.display = 'block';
+          form.reset();
+        } else {
+          note.textContent = "Something went wrong sending your enquiry. Please email us directly at Anvil-global@Anvil-global.com.";
+          note.style.display = 'block';
+        }
+      }).catch(() => {
+        note.textContent = "Something went wrong sending your enquiry. Please email us directly at Anvil-global@Anvil-global.com.";
+        note.style.display = 'block';
+      }).finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Enquiry';
+      });
+
+      return false;
+    }
+  </script>
 
   <footer>
     <div>ANVIL &nbsp;/&nbsp; PROTECTIVE SERVICES</div>
