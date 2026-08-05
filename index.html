@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANVIL — Protection Encompassed.</title>
+<title>ANVIL — Protective Services, Engineered for Certainty</title>
 <style>
   :root {
     --ink: #0E1013;
@@ -406,6 +406,77 @@
   .brackets .bl { bottom: 20px; left: 20px; border-width: 0 0 1px 1px; }
   .brackets .br { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
   @media (max-width: 720px) { .brackets { display: none; } }
+  footer { display: flex; flex-wrap: wrap; }
+  .footer-legal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+  .footer-legal a {
+    color: var(--dim);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .footer-legal a:hover { color: var(--accent); }
+  .legal-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(6,7,8,0.85);
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 4vw;
+  }
+  .legal-modal.open { display: flex; }
+  .legal-modal-box {
+    background: var(--ink);
+    border: 1px solid var(--hairline);
+    max-width: 680px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 40px;
+    position: relative;
+  }
+  .legal-modal-box h2 {
+    color: var(--offwhite);
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+    letter-spacing: 0.04em;
+  }
+  .legal-modal-box h3 {
+    color: var(--accent);
+    font-size: 0.85rem;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .legal-modal-box p, .legal-modal-box li {
+    color: var(--silver-dim);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .legal-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--silver-dim);
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .legal-modal-close:hover { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -431,7 +502,7 @@
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Close Protection &nbsp;·&nbsp; TSCM &nbsp;·&nbsp; Residential &nbsp;·&nbsp; Medical</div>
-      <h1>Protection Ecompassed.</h1>
+      <h1>Protective services, engineered for certainty.</h1>
       <div class="hero-strike"></div>
       <p>ANVIL provides protective, technical, and medical support for principals, corporates, and residences operating under real risk — not theoretical risk.</p>
       <div class="hero-ctas">
@@ -572,7 +643,59 @@
   <footer>
     <div>ANVIL &nbsp;/&nbsp; PROTECTIVE SERVICES</div>
     <div>STATUS: CONFIDENTIAL ON REQUEST</div>
+    <div class="footer-legal">
+      <span>&copy; 2026 ANVIL Global Ltd</span>
+      <a onclick="document.getElementById('privacy-modal').classList.add('open')">Privacy Policy</a>
+      <a onclick="document.getElementById('terms-modal').classList.add('open')">Terms &amp; Conditions</a>
+      <a onclick="document.getElementById('cookies-modal').classList.add('open')">Cookie Policy</a>
+    </div>
   </footer>
+
+  <div class="legal-modal" id="privacy-modal">
+    <div class="legal-modal-box">
+      <button class="legal-modal-close" onclick="document.getElementById('privacy-modal').classList.remove('open')">&times;</button>
+      <h2>Privacy Policy</h2>
+      <p>ANVIL Global Ltd ("ANVIL", "we", "us") is committed to protecting your privacy. This policy explains how we collect, use, and safeguard information submitted through this website, in line with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
+      <h3>Who we are</h3>
+      <p>ANVIL Global Ltd, registered in England and Wales. Registered office: 61 Bridge Street, Kington, HR5 3DJ. Company number: 17370820.</p>
+      <h3>What we collect</h3>
+      <p>When you submit an enquiry through this site, we collect the information you provide, which may include your name, email address, phone number, and details of your enquiry or protective services requirement.</p>
+      <h3>How we use it</h3>
+      <p>We use this information solely to respond to your enquiry, assess suitability for our services, and, where you engage us, to deliver those services. We do not sell or share your data with third parties for marketing purposes.</p>
+      <h3>Confidentiality</h3>
+      <p>Given the nature of our work, all enquiries and client information are handled under strict confidentiality, accessible only to personnel directly involved in assessing or delivering your requirement.</p>
+      <h3>Data retention</h3>
+      <p>We retain enquiry data only for as long as necessary to respond to you or, if you become a client, in line with our contractual and legal obligations.</p>
+      <h3>Your rights</h3>
+      <p>You have the right to request access to, correction of, or deletion of your personal data. To exercise these rights, contact us at Anvil-global@Anvil-global.com.</p>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="terms-modal">
+    <div class="legal-modal-box">
+      <button class="legal-modal-close" onclick="document.getElementById('terms-modal').classList.remove('open')">&times;</button>
+      <h2>Terms &amp; Conditions</h2>
+      <p>These terms govern your use of this website. By accessing this site, you accept these terms in full.</p>
+      <h3>Website use</h3>
+      <p>Content on this site is provided for general information about ANVIL Global Ltd's services and does not constitute a contractual offer. Submitting an enquiry does not create a binding agreement between you and ANVIL; formal engagements are governed by a separate signed service agreement.</p>
+      <h3>Intellectual property</h3>
+      <p>All content, branding, and imagery on this site, including the ANVIL name and logo, are the property of ANVIL Global Ltd and may not be reproduced without written consent.</p>
+      <h3>No guarantee of service availability</h3>
+      <p>Enquiries are subject to assessment and availability. ANVIL reserves the right to decline any engagement at its discretion.</p>
+      <h3>Limitation of liability</h3>
+      <p>ANVIL is not liable for any loss arising from use of, or inability to use, this website, to the fullest extent permitted by law.</p>
+      <h3>Governing law</h3>
+      <p>These terms are governed by the laws of England and Wales, and any disputes fall under the exclusive jurisdiction of its courts.</p>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="cookies-modal">
+    <div class="legal-modal-box">
+      <button class="legal-modal-close" onclick="document.getElementById('cookies-modal').classList.remove('open')">&times;</button>
+      <h2>Cookie Policy</h2>
+      <p>This website does not currently use tracking or analytics cookies. If this changes in future — for example, to add site analytics — this policy will be updated to explain what is collected and how to manage your preferences.</p>
+    </div>
+  </div>
 
 </body>
 </html>
