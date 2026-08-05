@@ -556,9 +556,18 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
 
+      const formData = new FormData(form);
+
+      // Log to Google Sheet (fire-and-forget, no-cors since Apps Script doesn't return CORS headers)
+      fetch('https://script.google.com/macros/s/AKfycby181X5lemUgVTZc3zk9HZNEXaAubwsxxXiwRWKZQ7rjOvR7fqDOa_-Q0FfPf-F8_TqSw/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      }).catch(() => { /* logging failure shouldn't block the email send */ });
+
       fetch('https://formspree.io/f/mljreeap', {
         method: 'POST',
-        body: new FormData(form),
+        body: formData,
         headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
