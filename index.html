@@ -106,8 +106,13 @@
     text-align: center;
     padding: 120px 6vw 100px 6vw;
     overflow: hidden;
-    background: radial-gradient(ellipse 900px 650px at 50% -8%, rgba(176,138,69,0.14), transparent 62%),
-      linear-gradient(180deg, #14171C 0%, #0E1013 55%, #0A0B0D 100%);
+    background:
+      radial-gradient(ellipse 900px 650px at 50% -8%, rgba(176,138,69,0.10), transparent 62%),
+      linear-gradient(180deg, rgba(10,11,13,0.68) 0%, rgba(10,11,13,0.6) 45%, rgba(10,11,13,0.96) 100%),
+      url("assets/hero-tarmac.jpg");
+    background-size: auto, auto, cover;
+    background-position: center, center, center 62%;
+    background-repeat: no-repeat;
   }
   .hero::before {
     content: "";
@@ -131,7 +136,7 @@
     align-items: center;
     gap: 48px;
   }
-  .hero-text { display: flex; flex-direction: column; align-items: center; }
+  .hero-text { display: flex; flex-direction: column; align-items: center; text-shadow: 0 2px 16px rgba(0,0,0,0.55); }
   .hero-eyebrow {
     font-family: var(--mono);
     font-size: 12px;
@@ -156,7 +161,7 @@
   }
   .hero p {
     font-size: 17px;
-    color: var(--silver-dim);
+    color: var(--silver);
     max-width: 540px;
     margin: 0 auto 36px auto;
   }
