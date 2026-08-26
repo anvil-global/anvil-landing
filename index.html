@@ -114,6 +114,14 @@
     background-position: center, center, center 62%;
     background-repeat: no-repeat;
   }
+  @media (max-width: 720px) {
+    .hero {
+      background-image:
+        radial-gradient(ellipse 900px 650px at 50% -8%, rgba(176,138,69,0.10), transparent 62%),
+        linear-gradient(180deg, rgba(10,11,13,0.68) 0%, rgba(10,11,13,0.6) 45%, rgba(10,11,13,0.96) 100%),
+        url("assets/hero-tarmac-mobile.jpg");
+    }
+  }
   .hero::before {
     content: "";
     position: absolute;
