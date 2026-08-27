@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anvil-global.com/sitemap.xml
