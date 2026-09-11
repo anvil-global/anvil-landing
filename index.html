@@ -1,32 +1,21 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-<script>
-  /* TEMP: theme switcher for internal review — remove before final launch */
-  (function () {
-    try {
-      var t = localStorage.getItem('anvil-theme');
-      if (t === 'midnight' || t === 'ivory' || t === 'forest' || t === 'steel') {
-        document.documentElement.setAttribute('data-theme', t);
-      }
-    } catch (e) {}
-  })();
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ANVIL Global — Protection, Encompassed.</title>
 <meta name="description" content="ANVIL Global delivers close protection, residential security, technical security (TSCM) and specialist protective services to a single documented standard — UK based, built for international reach.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://anvil-global.com/">
+<link rel="canonical" href="https://www.anvil-global.com/">
 <meta name="theme-color" content="#0E1013">
 
 <meta property="og:title" content="ANVIL Global — Protection, Encompassed.">
 <meta property="og:description" content="Close protection, residential security and technical counter-surveillance delivered to a documented standard by vetted operators.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://anvil-global.com/">
+<meta property="og:url" content="https://www.anvil-global.com/">
 <meta property="og:site_name" content="ANVIL Global">
 <meta property="og:locale" content="en_GB">
-<meta property="og:image" content="https://anvil-global.com/assets/hero-tarmac.jpg">
+<meta property="og:image" content="https://www.anvil-global.com/assets/hero-tarmac.jpg">
 <meta property="og:image:width" content="1536">
 <meta property="og:image:height" content="1024">
 <meta property="og:image:alt" content="ANVIL Global — private jet, helicopter and armoured SUV on a tarmac at dusk">
@@ -34,7 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ANVIL Global — Protection, Encompassed.">
 <meta name="twitter:description" content="Close protection, residential security and technical counter-surveillance delivered to a documented standard by vetted operators.">
-<meta name="twitter:image" content="https://anvil-global.com/assets/hero-tarmac.jpg">
+<meta name="twitter:image" content="https://www.anvil-global.com/assets/hero-tarmac.jpg">
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -46,9 +35,9 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "ANVIL Global",
-  "url": "https://anvil-global.com/",
-  "logo": "https://anvil-global.com/assets/logo-mark.png",
-  "image": "https://anvil-global.com/assets/hero-tarmac.jpg",
+  "url": "https://www.anvil-global.com/",
+  "logo": "https://www.anvil-global.com/assets/logo-mark.png",
+  "image": "https://www.anvil-global.com/assets/hero-tarmac.jpg",
   "description": "ANVIL Global delivers close protection, residential security, technical security (TSCM) and specialist protective services to a single documented standard, UK based and built for international reach.",
   "areaServed": {
     "@type": "Country",
@@ -67,8 +56,7 @@
 <link rel="preload" as="image" href="assets/hero-tarmac-mobile.jpg" media="(max-width: 720px)">
 <link rel="preload" as="image" href="assets/hero-tarmac.jpg" media="(min-width: 721px)">
 <style>
-  :root,
-  html[data-theme="midnight"] {
+  :root {
     --ink: #0E1013;
     --panel: #15181D;
     --panel2: #1B1F26;
@@ -81,42 +69,12 @@
     --serif: Georgia, 'Times New Roman', serif;
     --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     --mono: 'SF Mono', 'Consolas', 'Menlo', monospace;
-  }
-  /* ---- Theme: Estate Ivory (luxury / private-client) ---- */
-  html[data-theme="ivory"] {
-    --ink: #F5F1E8;
-    --panel: #EDE7D8;
-    --panel2: #E4DDC9;
-    --hairline: #CFC5A8;
-    --silver: #2E3B31;
-    --silver-dim: #4B5A4C;
-    --offwhite: #1C2A20;
-    --accent: #7A5820;
-    --accent-dim: #7A582055;
-  }
-  /* ---- Theme: Forest Command (operational / grounded) ---- */
-  html[data-theme="forest"] {
-    --ink: #10231A;
-    --panel: #17301F;
-    --panel2: #1D3826;
-    --hairline: #34503C;
-    --silver: #D7DED2;
-    --silver-dim: #B9C4B4;
-    --offwhite: #F3F0E4;
-    --accent: #B79457;
-    --accent-dim: #B7945766;
-  }
-  /* ---- Theme: Steel & Gold (corporate / intelligence) ---- */
-  html[data-theme="steel"] {
-    --ink: #10151C;
-    --panel: #1A222C;
-    --panel2: #212B37;
-    --hairline: #37424F;
-    --silver: #D7DCE3;
-    --silver-dim: #AEB8C4;
-    --offwhite: #F4F2EC;
-    --accent: #C9A54B;
-    --accent-dim: #C9A54B66;
+    /* Raw channel values so glass surfaces can build theme-correct rgba()
+       fills/scrims without hardcoding a colour that only suits Midnight. */
+    --ink-rgb: 14,16,19;
+    --panel-rgb: 21,24,29;
+    --offwhite-rgb: 241,239,234;
+    --accent-rgb: 176,138,69;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -148,9 +106,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 18px 5vw;
-    background: rgba(14,16,19,0.88);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid var(--hairline);
+    background: rgba(var(--ink-rgb), 0.72);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid rgba(var(--offwhite-rgb), 0.1);
   }
   .nav-brand {
     display: flex;
@@ -201,34 +160,62 @@
     text-align: left;
     padding: 120px 6vw 100px 6vw;
     overflow: hidden;
+    background: var(--ink);
+  }
+  /* Photo + scrim layer, isolated on its own pseudo-element so it can be
+     given a subtle settle-in zoom without scaling the text content. A
+     dedicated radial scrim sits over the badge graphic baked into the
+     photography so the headline reads cleanly against a calmer patch of
+     the image, without touching the image file itself. */
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    transform: scale(1.06);
+    animation: heroZoom 1.8s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
     background:
       radial-gradient(ellipse 900px 650px at 50% -8%, rgba(176,138,69,0.10), transparent 62%),
-      linear-gradient(90deg, rgba(10,11,13,0.88) 0%, rgba(10,11,13,0.55) 42%, rgba(10,11,13,0.15) 68%, transparent 85%),
+      radial-gradient(ellipse 800px 680px at 38% 38%, rgba(10,11,13,0.94), rgba(10,11,13,0.8) 55%, transparent 78%),
+      linear-gradient(90deg, rgba(10,11,13,0.95) 0%, rgba(10,11,13,0.78) 46%, rgba(10,11,13,0.32) 70%, transparent 88%),
       linear-gradient(180deg, rgba(10,11,13,0.5) 0%, rgba(10,11,13,0.3) 40%, rgba(10,11,13,0.75) 100%),
       url("assets/hero-tarmac.jpg");
-    background-size: auto, auto, auto, cover;
-    background-position: center, center, center, 20% 62%;
+    background-size: auto, auto, auto, auto, cover;
+    background-position: center, center, center, center, 20% 62%;
     background-repeat: no-repeat;
   }
+  @keyframes heroZoom {
+    from { transform: scale(1.06); }
+    to { transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero::after { animation: none; transform: scale(1); }
+  }
   @media (max-width: 720px) {
-    .hero {
+    .hero::after {
       background-image:
         radial-gradient(ellipse 900px 650px at 50% -8%, rgba(176,138,69,0.10), transparent 62%),
-        linear-gradient(180deg, rgba(10,11,13,0.68) 0%, rgba(10,11,13,0.6) 45%, rgba(10,11,13,0.96) 100%),
+        radial-gradient(ellipse 100% 62% at 50% 40%, rgba(10,11,13,0.97), rgba(10,11,13,0.85) 55%, transparent 85%),
+        linear-gradient(180deg, rgba(10,11,13,0.8) 0%, rgba(10,11,13,0.78) 35%, rgba(10,11,13,0.86) 55%, rgba(10,11,13,0.97) 100%),
         url("assets/hero-tarmac-mobile.jpg");
+      background-size: auto, auto, auto, cover;
+      background-position: center, center, center, center;
     }
   }
   .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: 1;
     background: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(176,138,69,0.16), transparent 70%);
     animation: heroGlow 12s ease-in-out infinite;
   }
   @keyframes heroGlow {
     0%, 100% { opacity: 0.55; }
     50% { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero::before { animation: none; opacity: 0.75; }
   }
   .hero-content {
     position: relative;
@@ -238,13 +225,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 40px;
+    gap: 32px;
   }
   .hero-text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-shadow: 0 2px 18px rgba(0,0,0,0.75);
+    margin-bottom: -18px;
   }
   .hero-eyebrow {
     font-family: var(--mono);
@@ -255,18 +243,14 @@
     margin-bottom: 18px;
   }
   .hero h1 {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: clamp(2.4rem, 6vw, 4.2rem);
-    line-height: 1.05;
-    color: var(--offwhite);
-    letter-spacing: -0.5px;
-    margin-bottom: 22px;
-  }
-  .hero-strike {
-    width: 64px; height: 2px;
-    background: var(--accent);
-    margin: 0 0 22px 0;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: clamp(0.72rem, 0.6rem + 0.5vw, 0.86rem);
+    line-height: 1.6;
+    color: rgba(214, 195, 155, 0.82);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 0;
   }
   .hero p {
     font-size: 17px;
@@ -275,6 +259,17 @@
     margin: 0 0 0 0;
   }
   .hero-ctas { display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; }
+  /* Staggered hero reveal: headline, then subtext, then CTAs — quick and
+     subtle, no bounce. Falls back to the site-wide reduced-motion rule
+     which strips all transitions/animations. */
+  .hero-reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .hero-reveal.visible { opacity: 1; transform: translateY(0); }
+  .hero-reveal-1 { transition-delay: 0.1s; }
+  .hero-reveal-2 { transition-delay: 0.32s; }
+  .hero-reveal-3 { transition-delay: 0.54s; margin-top: 22px; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal { opacity: 1; transform: none; transition: none; }
+  }
   .btn-primary {
     font-family: var(--mono);
     font-size: 13px;
@@ -376,20 +371,43 @@
   .services-grid {
     display: flex;
     flex-wrap: wrap;
-    border-top: 1px solid var(--hairline);
-    border-left: 1px solid var(--hairline);
+    gap: 1px;
+    background: rgba(var(--offwhite-rgb), 0.08);
+    border: 1px solid rgba(var(--offwhite-rgb), 0.08);
+    border-radius: 4px;
+    overflow: hidden;
   }
+  /* Compact frosted-glass panel treatment: translucent fill over the page
+     background rather than a solid card, with a fine low-opacity border.
+     Kept flat/rectangular (small radius only) — this is the accent glass
+     surface for service detail, not a floating dashboard tile. */
   .service-card {
-    background: var(--ink);
+    background: rgba(var(--panel-rgb), 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 32px 26px;
-    transition: background 0.25s;
+    transition: background 0.25s, transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     box-sizing: border-box;
     flex: 1 1 33.333%;
     min-width: 280px;
-    border-right: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
+    border: 1px solid rgba(var(--offwhite-rgb), 0.08);
+    position: relative;
   }
-  .service-card:hover { background: var(--panel2); }
+  .service-card:hover {
+    background: rgba(var(--panel-rgb), 0.78);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.28);
+  }
+  .service-card:hover::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .service-card:hover { transform: none; }
+  }
   .service-card .code {
     font-family: var(--mono);
     font-size: 11px;
@@ -428,9 +446,27 @@
   .process-item .tag {
     font-family: var(--mono);
     font-size: 11px;
-    color: var(--silver-dim);
+    color: var(--accent);
     letter-spacing: 1px;
-    padding-top: 3px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--panel-rgb), 0.6);
+    border: 1px solid rgba(var(--offwhite-rgb), 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .process-item .tag-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
   }
   .process-item h4 {
     font-family: var(--serif);
@@ -508,13 +544,21 @@
   .footer-legal {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 24px;
+    gap: 10px 24px;
     padding-top: 16px;
     margin-top: 16px;
     border-top: 1px solid var(--hairline);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
+  }
+  /* Reserve room once at the foot of the page so the last footer link never
+     sits behind the fixed WhatsApp button, instead of patching every
+     section that happens to scroll past it. */
+  @media (max-width: 600px) {
+    footer { padding-bottom: 96px; }
+    .footer-legal span:nth-child(2) { flex-basis: 100%; text-align: center; }
   }
   .footer-legal a {
     color: var(--dim);
@@ -597,15 +641,18 @@
   body { transition: background-color 0.25s ease, color 0.25s ease; }
   @media (prefers-reduced-motion: reduce) { body { transition: none; } }
 
-  /* ---------- TRUST STRIP ---------- */
+  /* ---------- TRUST / PROOF STRIP ---------- */
+  /* Elevated from a plain text row to a restrained glass panel: translucent
+     fill + blur + a hairline border at low opacity, sitting just under the
+     hero rather than as a flat background band. */
   .trust-strip {
-    background: var(--panel);
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-    padding: 22px 6vw;
+    padding: 0 6vw 0 6vw;
+    margin-top: -46px;
+    position: relative;
+    z-index: 3;
   }
   .trust-strip-inner {
-    max-width: 1100px;
+    max-width: 1040px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -617,6 +664,17 @@
     letter-spacing: 0.6px;
     color: var(--silver-dim);
     text-align: center;
+    background: rgba(var(--panel-rgb), 0.55);
+    border: 1px solid rgba(var(--offwhite-rgb), 0.1);
+    border-radius: 4px;
+    padding: 20px 28px;
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+  }
+  @media (max-width: 720px) {
+    .trust-strip { margin-top: -30px; }
+    .trust-strip-inner { padding: 16px 18px; }
   }
   .trust-strip-inner span { white-space: nowrap; }
   .trust-strip-inner a { color: var(--silver-dim); border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
@@ -671,37 +729,60 @@
   .journey-line.filled { height: 100%; }
   @media (prefers-reduced-motion: reduce) { .journey-line { transition: none; } }
   .process-list { padding-left: 0; }
-
-  /* ---------- THEME SWITCHER (temporary) ---------- */
-  .theme-switcher {
-    position: fixed;
-    right: 24px;
-    bottom: 96px;
-    z-index: 600;
-    background: var(--panel2);
-    border: 1px solid var(--hairline);
-    border-radius: 999px;
-    padding: 6px;
-    display: flex;
-    gap: 6px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  /* Numbered steps build in one after another as the track enters view,
+     in addition to the line draw, so the journey reads as a progression. */
+  .journey-step {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
   }
-  .theme-switcher button {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    cursor: pointer;
+  .journey-track.started .journey-step { opacity: 1; transform: translateY(0); }
+  .journey-track.started .journey-step:nth-of-type(2) { transition-delay: 0.15s; }
+  .journey-track.started .journey-step:nth-of-type(3) { transition-delay: 0.35s; }
+  .journey-track.started .journey-step:nth-of-type(4) { transition-delay: 0.55s; }
+  .journey-track.started .journey-step:nth-of-type(5) { transition-delay: 0.75s; }
+  @media (prefers-reduced-motion: reduce) {
+    .journey-step { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq { background: var(--panel); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 1px; }
+  .faq-item {
+    background: rgba(var(--panel-rgb), 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--offwhite-rgb), 0.08);
+    border-radius: 4px;
     padding: 0;
   }
-  .theme-switcher button[aria-pressed="true"] { border-color: var(--accent); }
-  .theme-switcher button.sw-midnight { background: #0E1013; }
-  .theme-switcher button.sw-ivory { background: #F5F1E8; }
-  .theme-switcher button.sw-forest { background: #10231A; }
-  .theme-switcher button.sw-steel { background: #10151C; }
-  @media (max-width: 720px) {
-    .theme-switcher { right: 14px; bottom: 88px; }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--serif);
+    font-size: 16.5px;
+    color: var(--offwhite);
   }
+  .faq-q-mark { font-family: var(--mono); color: var(--accent); font-size: 18px; line-height: 1; flex: none; transition: transform 0.2s ease; }
+  .faq-q[aria-expanded="true"] .faq-q-mark { transform: rotate(45deg); }
+  @media (prefers-reduced-motion: reduce) { .faq-q-mark { transition: none; } }
+  .faq-a {
+    display: none;
+    padding: 0 24px 22px 24px;
+    font-size: 14px;
+    color: var(--silver-dim);
+    line-height: 1.65;
+    max-width: 620px;
+  }
+  .faq-a.open { display: block; }
 </style>
 </head>
 <body>
@@ -713,19 +794,16 @@
       <a href="contact.html">Contact</a>
       <a href="https://wa.me/447562850658" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-    <a class="nav-cta" href="contact.html">Enquire</a>
   </nav>
 
   <section class="hero">
-    <div class="hero-content reveal">
-      <div class="hero-text">
-        <h1>Discreet by design.</h1>
-        <div class="hero-strike"></div>
-        <p>ANVIL Global delivers close protection, residential security and technical counter-surveillance to a single documented standard — scoped, briefed and reported the same way on every engagement, in the UK and internationally.</p>
+    <div class="hero-content">
+      <div class="hero-text reveal hero-reveal hero-reveal-1">
+        <h1>Prepared &middot; Protected &middot; Uninterrupted</h1>
       </div>
-      <div class="hero-ctas">
+      <div class="hero-ctas reveal hero-reveal hero-reveal-3">
         <a class="btn-primary" href="#services">View Services</a>
-        <a class="btn-secondary" href="contact.html">Make an Enquiry</a>
+        <a class="btn-secondary" href="contact.html">Enquire</a>
       </div>
     </div>
     <div class="scroll-cue">Scroll</div>
@@ -752,7 +830,7 @@
       <div class="reveal">
         <div class="section-kicker">About ANVIL</div>
         <h2 class="section-title">Built by operators, not a franchise template.</h2>
-        <p class="section-intro" style="margin-bottom:0;">ANVIL was founded to deliver protective and technical security services to a documented, consistent standard — every engagement scoped, briefed, and reported the same way, regardless of which team delivers it. No improvisation, no generic packages.</p>
+        <p class="section-intro" style="margin-bottom:0;">Built by real operatives, ANVIL delivers a fluid, seamless experience, bringing every aspect of a client's protection requirements together through one trusted professional partner.</p>
       </div>
       <div class="reveal">
         <div class="about-stat"><b>Six service lines</b>from close protection through to technical counter-surveillance and in-house training.</div>
@@ -771,31 +849,31 @@
 
         <div class="service-card reveal">
           <div class="service-card-head"><span class="code">SL·01</span></div>
-          <h3>Close Protection</h3>
-          <p>Individual PPOs and full protection teams, scaled to the principal's threat level.</p>
+          <h3>Technical Travel Protection</h3>
+          <p>Secure movement and logistics coordination planned ahead of the principal, not worked out on the day.</p>
           <button class="service-view-btn" aria-expanded="false" aria-controls="detail-01" onclick="toggleService(this,'detail-01')">View detail</button>
-          <div class="service-detail" id="detail-01">Threat-led close protection, from a single PPO to a multi-operator team. Coverage is scoped against the principal's threat and risk profile, briefed to a written plan, and reported after every engagement — not left to individual operator judgement.</div>
+          <div class="service-detail" id="detail-01">Secure travel logistics coordinated end to end — arrival planning, transfers and timings scoped and briefed ahead of the principal, so movement between locations is controlled rather than improvised on the day.</div>
         </div>
 
         <div class="service-card reveal">
           <div class="service-card-head"><span class="code">SL·02</span></div>
-          <h3>Driving</h3>
-          <p>Advanced-trained drivers operating a fleet of high-class executive vehicles.</p>
+          <h3>Close Protection (CP)</h3>
+          <p>Individual PPOs and full protection teams, scaled to the principal's threat level.</p>
           <button class="service-view-btn" aria-expanded="false" aria-controls="detail-02" onclick="toggleService(this,'detail-02')">View detail</button>
-          <div class="service-detail" id="detail-02">Advanced-trained drivers, route-planned and briefed for the journey rather than simply driven on the day. Suited to standalone executive transport or as an integrated part of a close protection detail.</div>
+          <div class="service-detail" id="detail-02">Threat-led close protection, from a single PPO to a multi-operator team. Coverage is scoped against the principal's threat and risk profile, briefed to a written plan, and reported after every engagement — not left to individual operator judgement.</div>
         </div>
 
         <div class="service-card reveal">
           <div class="service-card-head"><span class="code">SL·03</span></div>
-          <h3>Residential Security</h3>
+          <h3>Residential Security, including canine handling</h3>
           <p>Dedicated teams providing continuous protective coverage for private residences.</p>
           <button class="service-view-btn" aria-expanded="false" aria-controls="detail-03" onclick="toggleService(this,'detail-03')">View detail</button>
-          <div class="service-detail" id="detail-03">Static or rotating teams covering a residence to a documented post order, covering access control, patrols and incident response, scaled to the property and the household's requirements.</div>
+          <div class="service-detail" id="detail-03">Static or rotating teams covering a residence to a documented post order, covering access control, patrols and incident response, including canine handling where required, scaled to the property and the household's requirements.</div>
         </div>
 
         <div class="service-card reveal">
           <div class="service-card-head"><span class="code">SL·04</span></div>
-          <h3>TSCM</h3>
+          <h3>Technical Surveillance Counter-Measures (TSCM)</h3>
           <p>Full technical sweeps for unauthorised surveillance devices, fully documented.</p>
           <button class="service-view-btn" aria-expanded="false" aria-controls="detail-04" onclick="toggleService(this,'detail-04')">View detail</button>
           <div class="service-detail" id="detail-04">Technical Surveillance Counter-Measures sweeps of vehicles, residences and offices, checking for unauthorised listening or tracking devices. Every sweep is written up with findings and recommendations.</div>
@@ -803,7 +881,7 @@
 
         <div class="service-card reveal">
           <div class="service-card-head"><span class="code">SL·05</span></div>
-          <h3>Medical Services</h3>
+          <h3>Medical Support</h3>
           <p>FREC3/FREC4 medics through to HCPC-registered clinicians, embedded on deployment.</p>
           <button class="service-view-btn" aria-expanded="false" aria-controls="detail-05" onclick="toggleService(this,'detail-05')">View detail</button>
           <div class="service-detail" id="detail-05">Medical cover embedded within a protection detail or deployed standalone, ranging from FREC3/FREC4-qualified medics to HCPC-registered clinicians, matched to the risk level of the engagement.</div>
@@ -811,7 +889,7 @@
 
         <div class="service-card reveal">
           <div class="service-card-head"><span class="code">SL·06</span></div>
-          <h3>Training Academy</h3>
+          <h3>Training</h3>
           <p>SIA and QNUK-aligned Close Protection, FREC3, and surveillance qualifications.</p>
           <button class="service-view-btn" aria-expanded="false" aria-controls="detail-06" onclick="toggleService(this,'detail-06')">View detail</button>
           <div class="service-detail" id="detail-06">SIA and QNUK-aligned training across Close Protection, FREC3 first aid and surveillance awareness, delivered by operators who work these disciplines day to day.</div>
@@ -821,46 +899,102 @@
     </div>
   </section>
 
-  <section class="process">
+  <section class="process" id="journey">
     <div class="process-list">
       <div class="section-kicker reveal">The ANVIL Journey</div>
-      <h2 class="section-title reveal">How an engagement begins.</h2>
-      <p class="section-intro reveal">One consistent path from first contact to deployment.</p>
+      <h2 class="section-title reveal">One engagement, five disciplines.</h2>
+      <p class="section-intro reveal">Every deployment moves through the same five facets — drawn directly from ANVIL's service lines — so nothing is left to improvisation between first contact and the ground.</p>
 
       <div class="journey-track">
         <div class="journey-line" id="journeyLine"></div>
 
-        <div class="process-item reveal">
+        <div class="process-item journey-step">
           <div class="tag">01</div>
           <div>
-            <h4>Confidential Enquiry</h4>
-            <p>Reach out via the form, email or WhatsApp. No call centre, no automated triage.</p>
+            <span class="tag-label">Arrival</span>
+            <h4>Arrival Logistics Coordination</h4>
+            <p>Movements are planned from the point of arrival — aviation-adjacent logistics, transfers and timings coordinated ahead of the principal, not worked out on the day.</p>
           </div>
         </div>
 
-        <div class="process-item reveal">
+        <div class="process-item journey-step">
           <div class="tag">02</div>
           <div>
-            <h4>Consultation</h4>
-            <p>Your requirement is discussed directly with an operator, to understand scope, timeline and risk.</p>
+            <span class="tag-label">Mobility</span>
+            <h4>Secure Mobility</h4>
+            <p>Advanced-trained drivers deliver route-planned, briefed transport — standalone, or as an integrated part of a protection detail.</p>
           </div>
         </div>
 
-        <div class="process-item reveal">
+        <div class="process-item journey-step">
           <div class="tag">03</div>
           <div>
-            <h4>Scoping &amp; Briefing</h4>
-            <p>The engagement is written up against a documented SOP and briefed to the assigned team before deployment.</p>
+            <span class="tag-label">Protection</span>
+            <h4>Close Protection</h4>
+            <p>PPOs and protection teams, scaled to the principal's threat level and briefed to a written plan for the duration of the engagement.</p>
           </div>
         </div>
 
-        <div class="process-item reveal">
+        <div class="process-item journey-step">
           <div class="tag">04</div>
           <div>
-            <h4>Delivery &amp; Reporting</h4>
-            <p>The team deploys to the agreed standard, with reporting throughout the engagement.</p>
+            <span class="tag-label">Intelligence</span>
+            <h4>Intelligence-Led Planning</h4>
+            <p>TSCM sweeps and threat assessment inform the plan before and during deployment, rather than sitting alongside it as an afterthought.</p>
           </div>
         </div>
+
+        <div class="process-item journey-step">
+          <div class="tag">05</div>
+          <div>
+            <span class="tag-label">Destination</span>
+            <h4>Destination &amp; Ongoing Support</h4>
+            <p>Residential security and continuing cover at the destination, reported throughout to the same documented standard as the rest of the engagement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="services-wrap">
+      <div class="section-kicker reveal">Frequently Asked</div>
+      <h2 class="section-title reveal">Before you make contact.</h2>
+      <p class="section-intro reveal">A few questions that come up ahead of a first enquiry.</p>
+      <div class="faq-list">
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this,'faq-a-1')">
+            <span>Do you only operate in the UK?</span>
+            <span class="faq-q-mark">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-1">ANVIL is UK based and built for international reach — engagements are planned to work beyond UK borders from day one, including secure mobility, protection and coordination around international movements.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this,'faq-a-2')">
+            <span>How much notice do you need?</span>
+            <span class="faq-q-mark">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-2">There's no fixed lead time — every engagement is scoped and briefed against a documented plan before deployment. Get in touch to discuss your timeline and we'll advise what's realistic.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this,'faq-a-3')">
+            <span>Will my enquiry be kept confidential?</span>
+            <span class="faq-q-mark">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-3">Discretion is built into how ANVIL operates — enquiries go directly to the operations team, and engagement details are shared only with personnel involved in delivering them.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this,'faq-a-4')">
+            <span>Are your operators licensed and insured?</span>
+            <span class="faq-q-mark">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-4">Operators are licensed where required and engagements are insured where applicable — specifics are confirmed with you as part of scoping, against the requirement in front of us.</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -870,7 +1004,7 @@
       <div class="section-kicker">Enquiries</div>
       <h2 class="section-title">Did you receive a card?</h2>
       <p class="section-intro">Every engagement starts with a confidential conversation.</p>
-      <a class="btn-primary" href="contact.html" style="display:inline-block; text-decoration:none;">Make an Enquiry</a>
+      <a class="btn-primary" href="contact.html" style="display:inline-block; text-decoration:none;">Enquire</a>
     </div>
   </section>
 
@@ -879,6 +1013,7 @@
     <div>STATUS: CONFIDENTIAL ON REQUEST</div>
     <div class="footer-legal">
       <span>&copy; 2026 ANVIL Global Ltd</span>
+      <span>Cherwell Building, Langford Ln, Kidlington OX5 1RA</span>
       <a onclick="document.getElementById('privacy-modal').classList.add('open')">Privacy Policy</a>
       <a onclick="document.getElementById('terms-modal').classList.add('open')">Terms &amp; Conditions</a>
       <a onclick="document.getElementById('cookies-modal').classList.add('open')">Cookie Policy</a>
@@ -934,39 +1069,18 @@
     <svg viewBox="0 0 32 32" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.697 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm0 21.8c-1.99 0-3.845-.58-5.406-1.578l-.388-.24-4.583 1.107 1.128-4.463-.253-.406A9.77 9.77 0 0 1 5.2 15c0-5.955 4.846-10.8 10.801-10.8S26.8 9.045 26.8 15 21.956 24.8 16.001 24.8zm5.94-8.13c-.325-.163-1.92-.947-2.218-1.055-.298-.109-.515-.163-.732.163-.217.325-.84 1.055-1.03 1.272-.19.217-.38.244-.705.081-.325-.163-1.373-.506-2.615-1.612-.967-.862-1.62-1.927-1.81-2.252-.19-.325-.02-.5.143-.663.147-.146.325-.38.488-.57.163-.19.217-.325.325-.542.109-.217.054-.407-.027-.57-.081-.163-.732-1.764-1.003-2.417-.264-.635-.532-.549-.732-.559l-.624-.011c-.217 0-.57.081-.868.407-.298.325-1.138 1.112-1.138 2.713 0 1.6 1.165 3.147 1.327 3.364.163.217 2.293 3.5 5.556 4.91.777.335 1.383.535 1.856.685.78.248 1.49.213 2.052.129.626-.093 1.92-.785 2.19-1.543.27-.759.27-1.408.19-1.543-.081-.135-.298-.217-.623-.38z"/></svg>
   </a>
 
-  <!-- TEMP: theme switcher for internal review — remove before final launch -->
-  <div class="theme-switcher" role="group" aria-label="Preview colour theme">
-    <button class="sw-midnight" aria-label="Midnight Executive theme" aria-pressed="true" onclick="setAnvilTheme('midnight',this)"></button>
-    <button class="sw-ivory" aria-label="Estate Ivory theme" aria-pressed="false" onclick="setAnvilTheme('ivory',this)"></button>
-    <button class="sw-forest" aria-label="Forest Command theme" aria-pressed="false" onclick="setAnvilTheme('forest',this)"></button>
-    <button class="sw-steel" aria-label="Steel and Gold theme" aria-pressed="false" onclick="setAnvilTheme('steel',this)"></button>
-  </div>
-
   <script>
-    function setAnvilTheme(name, btn) {
-      document.documentElement.setAttribute('data-theme', name);
-      try { localStorage.setItem('anvil-theme', name); } catch (e) {}
-      var group = btn.parentElement.querySelectorAll('button');
-      group.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
-    }
     function toggleService(btn, id) {
       var detail = document.getElementById(id);
       var open = detail.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       btn.textContent = open ? 'Hide detail' : 'View detail';
     }
-    (function () {
-      try {
-        var saved = localStorage.getItem('anvil-theme');
-        if (saved) {
-          var btn = document.querySelector('.theme-switcher .sw-' + saved);
-          if (btn) {
-            document.querySelectorAll('.theme-switcher button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
-            btn.setAttribute('aria-pressed', 'true');
-          }
-        }
-      } catch (e) {}
-    })();
+    function toggleFaq(btn, id) {
+      var answer = document.getElementById(id);
+      var open = answer.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
   </script>
 
   <script>
@@ -977,6 +1091,8 @@
         revealEls.forEach(function (el) { el.classList.add('visible'); });
         var jl = document.getElementById('journeyLine');
         if (jl) jl.classList.add('filled');
+        var trackEl = document.querySelector('.journey-track');
+        if (trackEl) trackEl.classList.add('started');
         return;
       }
       var observer = new IntersectionObserver(function (entries) {
@@ -996,6 +1112,7 @@
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               journeyLine.classList.add('filled');
+              track.classList.add('started');
               lineObserver.unobserve(entry.target);
             }
           });

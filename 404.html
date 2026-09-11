@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-<script>
-  /* TEMP: theme switcher for internal review — remove before final launch */
-  (function () {
-    try {
-      var t = localStorage.getItem('anvil-theme');
-      if (t === 'midnight' || t === 'ivory' || t === 'forest' || t === 'steel') {
-        document.documentElement.setAttribute('data-theme', t);
-      }
-    } catch (e) {}
-  })();
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page Not Found — ANVIL Global</title>
@@ -26,7 +15,7 @@
 
 <meta property="og:site_name" content="ANVIL Global">
 <meta property="og:locale" content="en_GB">
-<meta property="og:image" content="https://anvil-global.com/assets/hero-tarmac.jpg">
+<meta property="og:image" content="https://www.anvil-global.com/assets/hero-tarmac.jpg">
 <meta property="og:image:width" content="1536">
 <meta property="og:image:height" content="1024">
 <meta property="og:image:alt" content="ANVIL Global — private jet, helicopter and armoured SUV on a tarmac at dusk">
@@ -34,7 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Page Not Found — ANVIL Global">
 <meta name="twitter:description" content="The page you requested could not be found.">
-<meta name="twitter:image" content="https://anvil-global.com/assets/hero-tarmac.jpg">
+<meta name="twitter:image" content="https://www.anvil-global.com/assets/hero-tarmac.jpg">
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -42,8 +31,7 @@
 <link rel="manifest" href="site.webmanifest">
 
 <style>
-  :root,
-  html[data-theme="midnight"] {
+  :root {
     --ink: #0E1013;
     --panel: #15181D;
     --panel2: #1B1F26;
@@ -56,21 +44,7 @@
     --serif: Georgia, 'Times New Roman', serif;
     --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     --mono: 'SF Mono', 'Consolas', 'Menlo', monospace;
-  }
-  html[data-theme="ivory"] {
-    --ink: #F5F1E8; --panel: #EDE7D8; --panel2: #E4DDC9; --hairline: #CFC5A8;
-    --silver: #2E3B31; --silver-dim: #4B5A4C; --offwhite: #1C2A20;
-    --accent: #7A5820; --accent-dim: #7A582055;
-  }
-  html[data-theme="forest"] {
-    --ink: #10231A; --panel: #17301F; --panel2: #1D3826; --hairline: #34503C;
-    --silver: #D7DED2; --silver-dim: #B9C4B4; --offwhite: #F3F0E4;
-    --accent: #B79457; --accent-dim: #B7945766;
-  }
-  html[data-theme="steel"] {
-    --ink: #10151C; --panel: #1A222C; --panel2: #212B37; --hairline: #37424F;
-    --silver: #D7DCE3; --silver-dim: #AEB8C4; --offwhite: #F4F2EC;
-    --accent: #C9A54B; --accent-dim: #C9A54B66;
+    --ink-rgb: 14,16,19; --panel-rgb: 21,24,29; --offwhite-rgb: 241,239,234; --accent-rgb: 176,138,69;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -102,9 +76,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 18px 5vw;
-    background: rgba(14,16,19,0.88);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid var(--hairline);
+    background: rgba(var(--ink-rgb), 0.72);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid rgba(var(--offwhite-rgb), 0.1);
   }
   .nav-brand {
     display: flex;
@@ -281,14 +256,29 @@
   .service-card {
     background: var(--ink);
     padding: 32px 26px;
-    transition: background 0.25s;
+    transition: background 0.25s, transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     box-sizing: border-box;
     flex: 1 1 33.333%;
     min-width: 280px;
     border-right: 1px solid var(--hairline);
     border-bottom: 1px solid var(--hairline);
+    position: relative;
   }
-  .service-card:hover { background: var(--panel2); }
+  .service-card:hover {
+    background: var(--panel2);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.28);
+  }
+  .service-card:hover::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .service-card:hover { transform: none; }
+  }
   .service-card .code {
     font-family: var(--mono);
     font-size: 11px;
@@ -404,13 +394,21 @@
   .footer-legal {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 24px;
+    gap: 10px 24px;
     padding-top: 16px;
     margin-top: 16px;
     border-top: 1px solid var(--hairline);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
+  }
+  /* Reserve room once at the foot of the page so the last footer link never
+     sits behind the fixed WhatsApp button, instead of patching every
+     section that happens to scroll past it. */
+  @media (max-width: 600px) {
+    footer { padding-bottom: 96px; }
+    .footer-legal span:nth-child(2) { flex-basis: 100%; text-align: center; }
   }
   .footer-legal a {
     color: var(--dim);
@@ -497,13 +495,10 @@
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
   .trust-strip {
-    background: var(--panel);
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
     padding: 22px 6vw;
   }
   .trust-strip-inner {
-    max-width: 1100px;
+    max-width: 1040px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -515,41 +510,18 @@
     letter-spacing: 0.6px;
     color: var(--silver-dim);
     text-align: center;
+    background: rgba(var(--panel-rgb), 0.55);
+    border: 1px solid rgba(var(--offwhite-rgb), 0.1);
+    border-radius: 4px;
+    padding: 20px 28px;
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.22);
   }
   .trust-strip-inner span { white-space: nowrap; }
   .trust-strip-inner a { color: var(--silver-dim); border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
   .trust-strip-inner a:hover { color: var(--accent); border-color: var(--accent); }
   .trust-dot { color: var(--accent); }
-
-  .theme-switcher {
-    position: fixed;
-    right: 24px;
-    bottom: 96px;
-    z-index: 600;
-    background: var(--panel2);
-    border: 1px solid var(--hairline);
-    border-radius: 999px;
-    padding: 6px;
-    display: flex;
-    gap: 6px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-  }
-  .theme-switcher button {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    cursor: pointer;
-    padding: 0;
-  }
-  .theme-switcher button[aria-pressed="true"] { border-color: var(--accent); }
-  .theme-switcher button.sw-midnight { background: #0E1013; }
-  .theme-switcher button.sw-ivory { background: #F5F1E8; }
-  .theme-switcher button.sw-forest { background: #10231A; }
-  .theme-switcher button.sw-steel { background: #10151C; }
-  @media (max-width: 720px) {
-    .theme-switcher { right: 14px; bottom: 88px; }
-  }
 </style>
 </head>
 <body>
@@ -562,7 +534,6 @@
       <a href="contact.html">Contact</a>
       <a href="https://wa.me/447562850658" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-    <a class="nav-cta" href="contact.html">Enquire</a>
   </nav>
 
 
@@ -573,7 +544,7 @@
       <p class="section-intro">The page you're looking for doesn't exist, has moved, or the link may be out of date. Head back to the homepage, or reach out directly if you were trying to make an enquiry.</p>
       <div class="hero-ctas" style="justify-content:center;">
         <a class="btn-primary" href="index.html">Return Home</a>
-        <a class="btn-secondary" href="contact.html">Make an Enquiry</a>
+        <a class="btn-secondary" href="contact.html">Enquire</a>
       </div>
     </div>
   </section>
@@ -583,6 +554,7 @@
     <div>STATUS: CONFIDENTIAL ON REQUEST</div>
     <div class="footer-legal">
       <span>&copy; 2026 ANVIL Global Ltd</span>
+      <span>Cherwell Building, Langford Ln, Kidlington OX5 1RA</span>
       <a onclick="document.getElementById('privacy-modal').classList.add('open')">Privacy Policy</a>
       <a onclick="document.getElementById('terms-modal').classList.add('open')">Terms &amp; Conditions</a>
       <a onclick="document.getElementById('cookies-modal').classList.add('open')">Cookie Policy</a>
@@ -638,33 +610,7 @@
     <svg viewBox="0 0 32 32" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.697 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm0 21.8c-1.99 0-3.845-.58-5.406-1.578l-.388-.24-4.583 1.107 1.128-4.463-.253-.406A9.77 9.77 0 0 1 5.2 15c0-5.955 4.846-10.8 10.801-10.8S26.8 9.045 26.8 15 21.956 24.8 16.001 24.8zm5.94-8.13c-.325-.163-1.92-.947-2.218-1.055-.298-.109-.515-.163-.732.163-.217.325-.84 1.055-1.03 1.272-.19.217-.38.244-.705.081-.325-.163-1.373-.506-2.615-1.612-.967-.862-1.62-1.927-1.81-2.252-.19-.325-.02-.5.143-.663.147-.146.325-.38.488-.57.163-.19.217-.325.325-.542.109-.217.054-.407-.027-.57-.081-.163-.732-1.764-1.003-2.417-.264-.635-.532-.549-.732-.559l-.624-.011c-.217 0-.57.081-.868.407-.298.325-1.138 1.112-1.138 2.713 0 1.6 1.165 3.147 1.327 3.364.163.217 2.293 3.5 5.556 4.91.777.335 1.383.535 1.856.685.78.248 1.49.213 2.052.129.626-.093 1.92-.785 2.19-1.543.27-.759.27-1.408.19-1.543-.081-.135-.298-.217-.623-.38z"/></svg>
   </a>
 
-  <!-- TEMP: theme switcher for internal review — remove before final launch -->
-  <div class="theme-switcher" role="group" aria-label="Preview colour theme">
-    <button class="sw-midnight" aria-label="Midnight Executive theme" aria-pressed="true" onclick="setAnvilTheme('midnight',this)"></button>
-    <button class="sw-ivory" aria-label="Estate Ivory theme" aria-pressed="false" onclick="setAnvilTheme('ivory',this)"></button>
-    <button class="sw-forest" aria-label="Forest Command theme" aria-pressed="false" onclick="setAnvilTheme('forest',this)"></button>
-    <button class="sw-steel" aria-label="Steel and Gold theme" aria-pressed="false" onclick="setAnvilTheme('steel',this)"></button>
-  </div>
-
   <script>
-    function setAnvilTheme(name, btn) {
-      document.documentElement.setAttribute('data-theme', name);
-      try { localStorage.setItem('anvil-theme', name); } catch (e) {}
-      var group = btn.parentElement.querySelectorAll('button');
-      group.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
-    }
-    (function () {
-      try {
-        var saved = localStorage.getItem('anvil-theme');
-        if (saved) {
-          var btn = document.querySelector('.theme-switcher .sw-' + saved);
-          if (btn) {
-            document.querySelectorAll('.theme-switcher button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
-            btn.setAttribute('aria-pressed', 'true');
-          }
-        }
-      } catch (e) {}
-    })();
     (function () {
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var revealEls = document.querySelectorAll('.reveal');
