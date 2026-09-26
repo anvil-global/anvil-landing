@@ -291,7 +291,7 @@
     font-weight: 400;
     font-size: clamp(0.78rem, 0.72rem + 0.16vw, 0.86rem);
     line-height: 1.5;
-    color: rgba(242, 240, 234, 0.76);
+    color: rgba(210, 174, 115, 0.92);
     letter-spacing: 0.08em;
     text-transform: none;
     margin-bottom: 0;
@@ -585,9 +585,23 @@
   }
 
   footer { display: flex; flex-wrap: wrap; }
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(3px);
+    transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1), filter .75s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+  .section-reveal-2 { transition-delay: .08s; }
+  .section-reveal-3 { transition-delay: .16s; }
+  .services-grid .service-card:nth-child(2), .faq-list .faq-item:nth-child(2) { transition-delay: .07s; }
+  .services-grid .service-card:nth-child(3), .faq-list .faq-item:nth-child(3) { transition-delay: .14s; }
+  .services-grid .service-card:nth-child(4), .faq-list .faq-item:nth-child(4) { transition-delay: .21s; }
+  .services-grid .service-card:nth-child(5) { transition-delay: .28s; }
+  .services-grid .service-card:nth-child(6) { transition-delay: .35s; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+  }
   .footer-legal {
     width: 100%;
     display: flex;
@@ -878,9 +892,9 @@
 
   <section id="services" class="section-charcoal">
     <div class="services-wrap">
-      <div class="section-kicker">Service Catalogue</div>
-      <h2 class="section-title">Six service lines. One operational standard.</h2>
-      <p class="section-intro">Every service is delivered by vetted operators to a documented standard. Further capabilities are in active development.</p>
+      <div class="section-kicker reveal">Service Catalogue</div>
+      <h2 class="section-title reveal section-reveal-2">Six service lines. One operational standard.</h2>
+      <p class="section-intro reveal section-reveal-3">Every service is delivered by vetted operators to a documented standard. Further capabilities are in active development.</p>
       <div class="services-grid">
 
         <div class="service-card reveal">
@@ -1036,7 +1050,7 @@
   </section>
 
   <section class="contact" id="contact">
-    <div class="contact-inner">
+    <div class="contact-inner reveal">
       <div class="section-kicker">Enquiries</div>
       <h2 class="section-title">Did you receive a card?</h2>
       <p class="section-intro">Every engagement starts with a confidential conversation.</p>
