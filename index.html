@@ -145,7 +145,9 @@
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid rgba(var(--offwhite-rgb), 0.1);
+    transition: padding .28s cubic-bezier(.22,1,.36,1), background .28s ease, border-color .28s ease, box-shadow .28s ease;
   }
+  .nav.scrolled { padding-top: 12px; padding-bottom: 12px; background: rgba(var(--ink-rgb), .9); border-bottom-color: rgba(var(--offwhite-rgb), .16); box-shadow: 0 10px 30px rgba(0,0,0,.16); }
   .nav-brand {
     display: flex;
     align-items: center;
@@ -216,8 +218,8 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    transform: scale(1.06);
-    animation: heroZoom 1.8s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+    transform: scale(1.035);
+    animation: heroZoom 1.6s cubic-bezier(.22,1,.36,1) forwards;
     background:
       radial-gradient(ellipse 900px 650px at 50% -8%, rgba(176,138,69,0.10), transparent 62%),
       radial-gradient(ellipse 800px 680px at 38% 38%, rgba(10,11,13,0.94), rgba(10,11,13,0.8) 55%, transparent 78%),
@@ -229,7 +231,7 @@
     background-repeat: no-repeat;
   }
   @keyframes heroZoom {
-    from { transform: scale(1.06); }
+    from { transform: scale(1.035); }
     to { transform: scale(1); }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -307,8 +309,8 @@
   /* Staggered hero reveal: headline, then subtext, then CTAs — quick and
      subtle, no bounce. Falls back to the site-wide reduced-motion rule
      which strips all transitions/animations. */
-  .hero-reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .hero-reveal.visible { opacity: 1; transform: translateY(0); }
+  .hero .hero-reveal { opacity: 0; transform: translateY(12px); filter: blur(2px); transition: opacity .72s cubic-bezier(.22,1,.36,1), transform .72s cubic-bezier(.22,1,.36,1), filter .72s ease; }
+  .hero .hero-reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
   .hero-reveal-1 { transition-delay: 0.1s; }
   .hero-reveal-2 { transition-delay: 0.32s; }
   .hero-reveal-3 { transition-delay: 0.54s; margin-top: 22px; }
@@ -324,10 +326,10 @@
     color: var(--ink-on-accent);
     padding: 14px 28px;
     font-weight: bold;
-    transition: filter 0.2s, transform 0.2s;
+    transition: filter .2s ease, transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s ease;
     display: inline-block;
   }
-  .btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+  .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(var(--accent-rgb), .15); }
   .btn-secondary {
     font-family: var(--mono);
     font-size: 13px;
@@ -336,10 +338,10 @@
     border: 1px solid var(--hairline);
     color: var(--silver);
     padding: 14px 28px;
-    transition: border-color 0.2s, color 0.2s;
+    transition: border-color .2s ease, color .2s ease, background .2s ease, transform .2s cubic-bezier(.22,1,.36,1);
     display: inline-block;
   }
-  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: rgba(var(--accent-rgb), .05); transform: translateY(-1px); }
 
   .scroll-cue {
     position: absolute;
@@ -432,7 +434,7 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 32px 26px;
-    transition: background 0.25s, transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    transition: background .28s ease, transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s ease, border-color .28s ease;
     box-sizing: border-box;
     flex: 1 1 33.333%;
     min-width: 280px;
@@ -763,15 +765,19 @@
   }
   .service-view-btn:hover, .service-view-btn[aria-expanded="true"] { background: var(--accent); color: var(--ink-on-accent); }
   .service-detail {
-    display: none;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--hairline);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-4px);
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 1px solid transparent;
     font-size: 13.5px;
     color: var(--silver-dim);
     line-height: 1.6;
+    transition: max-height .48s cubic-bezier(.22,1,.36,1), opacity .3s ease, transform .4s cubic-bezier(.22,1,.36,1), margin .4s ease, padding .4s ease, border-color .4s ease;
   }
-  .service-detail.open { display: block; }
+  .service-detail.open { max-height: 280px; opacity: 1; transform: translateY(0); margin-top: 16px; padding-top: 16px; border-top-color: var(--hairline); }
 
   /* ---------- JOURNEY / PROCESS ---------- */
   .journey-track {
@@ -783,27 +789,27 @@
     position: absolute;
     left: -1px; top: 0;
     width: 1px;
-    height: 0%;
+    height: var(--journey-progress, 0%);
     background: var(--accent);
-    transition: height 1.4s ease;
+    box-shadow: 0 0 12px rgba(var(--accent-rgb), .28);
+    transition: height .16s linear;
   }
-  .journey-line.filled { height: 100%; }
   @media (prefers-reduced-motion: reduce) { .journey-line { transition: none; } }
   .process-list { padding-left: 0; }
   /* Numbered steps build in one after another as the track enters view,
      in addition to the line draw, so the journey reads as a progression. */
   .journey-step {
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    opacity: .48;
+    transform: translateY(8px);
+    transition: opacity .55s cubic-bezier(.22,1,.36,1), transform .55s cubic-bezier(.22,1,.36,1);
   }
-  .journey-track.started .journey-step { opacity: 1; transform: translateY(0); }
-  .journey-track.started .journey-step:nth-of-type(2) { transition-delay: 0.15s; }
-  .journey-track.started .journey-step:nth-of-type(3) { transition-delay: 0.35s; }
-  .journey-track.started .journey-step:nth-of-type(4) { transition-delay: 0.55s; }
-  .journey-track.started .journey-step:nth-of-type(5) { transition-delay: 0.75s; }
+  .journey-step.active, .journey-step.complete { opacity: 1; transform: translateY(0); }
+  .journey-step .tag { transition: border-color .35s ease, background .35s ease, box-shadow .35s ease, color .35s ease; }
+  .journey-step.active .tag { border-color: var(--accent); background: rgba(var(--accent-rgb), .14); box-shadow: 0 0 0 5px rgba(var(--accent-rgb), .07), 0 0 18px rgba(var(--accent-rgb), .2); }
+  .journey-step.complete .tag { border-color: rgba(var(--accent-rgb), .55); }
   @media (prefers-reduced-motion: reduce) {
     .journey-step { opacity: 1; transform: none; transition: none; }
+    .journey-line { height: 100%; }
   }
 
   /* ---------- FAQ ---------- */
@@ -1145,10 +1151,7 @@
       var revealEls = document.querySelectorAll('.reveal');
       if (reduceMotion || !('IntersectionObserver' in window)) {
         revealEls.forEach(function (el) { el.classList.add('visible'); });
-        var jl = document.getElementById('journeyLine');
-        if (jl) jl.classList.add('filled');
-        var trackEl = document.querySelector('.journey-track');
-        if (trackEl) trackEl.classList.add('started');
+        document.querySelectorAll('.journey-step').forEach(function (step) { step.classList.add('complete'); });
         return;
       }
       var observer = new IntersectionObserver(function (entries) {
@@ -1164,23 +1167,39 @@
       var track = document.querySelector('.journey-track');
       var journeyLine = document.getElementById('journeyLine');
       if (track && journeyLine) {
-        var lineObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              journeyLine.classList.add('filled');
-              track.classList.add('started');
-              lineObserver.unobserve(entry.target);
-            }
+        var steps = Array.prototype.slice.call(track.querySelectorAll('.journey-step'));
+        var ticking = false;
+        function updateJourney() {
+          var rect = track.getBoundingClientRect();
+          var viewportAnchor = window.innerHeight * .58;
+          var progress = Math.max(0, Math.min(1, (viewportAnchor - rect.top) / rect.height));
+          track.style.setProperty('--journey-progress', (progress * 100) + '%');
+          var activeIndex = 0;
+          steps.forEach(function (step, index) {
+            var stepRect = step.getBoundingClientRect();
+            if (stepRect.top <= viewportAnchor) activeIndex = index;
           });
-        }, { threshold: 0.2 });
-        lineObserver.observe(track);
+          steps.forEach(function (step, index) {
+            step.classList.toggle('complete', index < activeIndex);
+            step.classList.toggle('active', index === activeIndex && progress > 0);
+          });
+          ticking = false;
+        }
+        function requestJourneyUpdate() { if (!ticking) { ticking = true; requestAnimationFrame(updateJourney); } }
+        window.addEventListener('scroll', requestJourneyUpdate, { passive: true });
+        window.addEventListener('resize', requestJourneyUpdate);
+        updateJourney();
       }
     })();
   </script>
   <script>
     (function () {
+      var nav = document.querySelector('.nav');
       var toggle = document.querySelector('.nav-toggle');
       var menu = document.getElementById('mobile-nav');
+      function updateNav() { if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+      window.addEventListener('scroll', updateNav, { passive: true });
+      updateNav();
       if (!toggle || !menu) return;
       function closeMenu() { menu.classList.remove('open'); document.body.classList.remove('menu-open'); toggle.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-label','Open menu'); }
       toggle.addEventListener('click', function () { var open = !menu.classList.contains('open'); menu.classList.toggle('open', open); document.body.classList.toggle('menu-open', open); toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); });

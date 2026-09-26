@@ -111,7 +111,9 @@
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid rgba(var(--offwhite-rgb), 0.1);
+    transition: padding .28s cubic-bezier(.22,1,.36,1), background .28s ease, border-color .28s ease, box-shadow .28s ease;
   }
+  .nav.scrolled { padding-top: 12px; padding-bottom: 12px; background: rgba(var(--ink-rgb), .9); border-bottom-color: rgba(var(--offwhite-rgb), .16); box-shadow: 0 10px 30px rgba(0,0,0,.16); }
   .nav-brand {
     display: flex;
     align-items: center;
@@ -749,7 +751,10 @@
   </script>
   <script>
     (function () {
+      var nav = document.querySelector('.nav');
       var toggle = document.querySelector('.nav-toggle'); var menu = document.getElementById('mobile-nav');
+      function updateNav() { if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+      window.addEventListener('scroll', updateNav, { passive: true }); updateNav();
       if (!toggle || !menu) return;
       function closeMenu() { menu.classList.remove('open'); document.body.classList.remove('menu-open'); toggle.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-label','Open menu'); }
       toggle.addEventListener('click', function () { var open = !menu.classList.contains('open'); menu.classList.toggle('open', open); document.body.classList.toggle('menu-open', open); toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); });
