@@ -10,7 +10,7 @@
 <meta name="description" content="ANVIL Global delivers close protection, residential security, technical security (TSCM) and specialist protective services to a single documented standard — UK based, built for international reach.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.anvil-global.com/">
-<meta name="theme-color" content="#0A1120">
+<meta name="theme-color" content="#0B0D0E">
 
 <meta property="og:title" content="ANVIL Global — Protection, Encompassed.">
 <meta property="og:description" content="Close protection, residential security and technical counter-surveillance delivered to a documented standard by vetted operators.">
@@ -60,44 +60,41 @@
 <link rel="preload" as="image" href="assets/hero-tarmac.jpg" media="(min-width: 721px)">
 <style>
   :root {
-    --ink: #0A1120;
-    --panel: #18263A;
-    --panel2: #2B3138;
-    --hairline: #23334A;
-    --silver: #C6CBD2;
-    --silver-dim: #B7BEC9;
-    --offwhite: #F6F3EE;
+    --ink: #0B0D0E;
+    --panel: #121619;
+    --panel2: #181D1F;
+    --hairline: #2B3234;
+    --silver: #D0D3D1;
+    --silver-dim: #A6ADAA;
+    --offwhite: #F2F0EA;
     --accent: #C9A063;
     --accent-dim: #C9A06366;
     --accent-text: var(--accent);
-    --ink-on-accent: #0A1120;
+    --ink-on-accent: #0B0D0E;
     --serif: 'Cinzel', Georgia, 'Times New Roman', serif;
     --sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
     --mono: 'SF Mono', 'Consolas', 'Menlo', monospace;
     /* Raw channel values so glass surfaces can build theme-correct rgba()
        fills/scrims without hardcoding a colour that only suits Midnight. */
-    --ink-rgb: 10,17,32;
-    --panel-rgb: 24,38,58;
-    --offwhite-rgb: 246,243,238;
+    --ink-rgb: 11,13,14;
+    --panel-rgb: 18,22,25;
+    --offwhite-rgb: 242,240,234;
     --accent-rgb: 201,160,99;
   }
-  /* Light section modifier: swaps the dark-theme tokens for an off-white/ivory
-     palette so existing child rules referencing var(--panel), var(--offwhite),
-     var(--silver), var(--hairline) etc. "just work" on a light background.
-     --accent-text also flips to near-black here so gold TEXT (kickers, links,
-     FAQ marks) stays readable; gold fills/backgrounds are untouched. */
-  .section-light {
-    --ink: #F6F3EE;
-    --panel: #EDE8DD;
-    --panel2: #E4DECE;
-    --hairline: #D6CFBC;
-    --silver: #2B3138;
-    --silver-dim: #4A4640;
-    --offwhite: #0A1120;
-    --ink-rgb: 246,243,238;
-    --panel-rgb: 237,232,221;
-    --offwhite-rgb: 10,17,32;
-    --accent-text: #0A1120;
+  /* A softer graphite section creates rhythm without introducing a bright
+     page-wide colour change. */
+  .section-charcoal {
+    --ink: #171B1D;
+    --panel: #1E2426;
+    --panel2: #242A2C;
+    --hairline: #363E40;
+    --silver: #D2D5D2;
+    --silver-dim: #AAB0AD;
+    --offwhite: #F2F0EA;
+    --ink-rgb: 23,27,29;
+    --panel-rgb: 30,36,38;
+    --offwhite-rgb: 242,240,234;
+    --accent-text: #D2AE73;
   }
   /* Forest modifier: distinct dark-green banner for the ANVIL Journey
      section. accent-text is intentionally NOT overridden — gold stays
@@ -290,12 +287,12 @@
     margin-bottom: 18px;
   }
   .hero h1 {
-    font-family: var(--sans);
+    font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(0.72rem, 0.6rem + 0.5vw, 0.86rem);
-    line-height: 1.6;
-    color: rgba(214, 195, 155, 0.82);
-    letter-spacing: 2.5px;
+    font-size: clamp(0.62rem, 0.56rem + 0.22vw, 0.72rem);
+    line-height: 1.5;
+    color: rgba(224, 211, 181, 0.78);
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 0;
   }
@@ -879,7 +876,7 @@
     </div>
   </section>
 
-  <section id="services" class="section-light">
+  <section id="services" class="section-charcoal">
     <div class="services-wrap">
       <div class="section-kicker">Service Catalogue</div>
       <h2 class="section-title">Six service lines. One operational standard.</h2>
@@ -995,7 +992,7 @@
     </div>
   </section>
 
-  <section class="faq section-light" id="faq">
+  <section class="faq section-charcoal" id="faq">
     <div class="services-wrap">
       <div class="section-kicker reveal">Frequently Asked</div>
       <h2 class="section-title reveal">Before you make contact.</h2>
