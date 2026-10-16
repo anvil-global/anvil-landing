@@ -7,7 +7,7 @@
 
   window.startAnvilGlobe = async function (canvas) {
     const ctx = canvas.getContext('2d');
-    const world = await fetch('https://raw.githubusercontent.com/anvil-global/anvil-landing/demo/training-academy/assets/countries-110m.json').then(r => r.json());
+    const world = await fetch('assets/countries-110m.json').then(r => r.json());
     const land = topojson.feature(world, world.objects.land);
     const borders = topojson.mesh(world, world.objects.countries, (a,b) => a !== b);
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
