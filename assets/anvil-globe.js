@@ -33,34 +33,34 @@
       const path = d3.geoPath(projection,ctx);
 
       ctx.save();
-      ctx.shadowColor = 'rgba(210,174,115,.24)'; ctx.shadowBlur = 36;
+      ctx.shadowColor = 'rgba(77,206,216,.24)'; ctx.shadowBlur = 36;
       const ocean = ctx.createRadialGradient(cx-radius*.3,cy-radius*.35,radius*.08,cx,cy,radius);
-      ocean.addColorStop(0,'#203a30'); ocean.addColorStop(.5,'#10231d'); ocean.addColorStop(1,'#050807');
+      ocean.addColorStop(0,'#234a56'); ocean.addColorStop(.5,'#123340'); ocean.addColorStop(1,'#08141c');
       ctx.beginPath(); path({type:'Sphere'}); ctx.fillStyle=ocean; ctx.fill();
       ctx.shadowBlur = 0;
 
-      ctx.beginPath(); path(d3.geoGraticule10()); ctx.strokeStyle='rgba(210,174,115,.09)'; ctx.lineWidth=.55; ctx.stroke();
-      ctx.beginPath(); path(land); ctx.fillStyle='#756449'; ctx.fill();
-      ctx.beginPath(); path(land); ctx.strokeStyle='rgba(225,199,146,.58)'; ctx.lineWidth=.75; ctx.stroke();
-      ctx.beginPath(); path(borders); ctx.strokeStyle='rgba(8,15,12,.55)'; ctx.lineWidth=.45; ctx.stroke();
+      ctx.beginPath(); path(d3.geoGraticule10()); ctx.strokeStyle='rgba(133,222,226,.09)'; ctx.lineWidth=.55; ctx.stroke();
+      ctx.beginPath(); path(land); ctx.fillStyle='#5c7478'; ctx.fill();
+      ctx.beginPath(); path(land); ctx.strokeStyle='rgba(146,228,232,.58)'; ctx.lineWidth=.75; ctx.stroke();
+      ctx.beginPath(); path(borders); ctx.strokeStyle='rgba(8,20,28,.55)'; ctx.lineWidth=.45; ctx.stroke();
 
       routes.forEach((route,i) => {
         const interp = d3.geoInterpolate(route[0],route[1]);
         const points = d3.range(0,1.001,.025).map(interp);
         ctx.beginPath(); path({type:'LineString',coordinates:points});
-        ctx.strokeStyle='rgba(210,174,115,.34)'; ctx.lineWidth=1; ctx.stroke();
+        ctx.strokeStyle='rgba(119,213,218,.40)'; ctx.lineWidth=1; ctx.stroke();
 
         const phase = reduced ? .35 : (elapsed * .16 + i * .19) % 1;
         const p = projection(interp(phase));
         if (p && d3.geoDistance(interp(phase),[-rotation,12]) < Math.PI/2) {
           const pulse=ctx.createRadialGradient(p[0],p[1],0,p[0],p[1],10);
-          pulse.addColorStop(0,'rgba(255,233,174,1)'); pulse.addColorStop(.22,'rgba(226,177,87,.92)'); pulse.addColorStop(1,'rgba(210,174,115,0)');
+          pulse.addColorStop(0,'rgba(218,251,252,1)'); pulse.addColorStop(.22,'rgba(90,218,226,.92)'); pulse.addColorStop(1,'rgba(77,206,216,0)');
           ctx.beginPath(); ctx.arc(p[0],p[1],10,0,Math.PI*2); ctx.fillStyle=pulse; ctx.fill();
-          ctx.beginPath(); ctx.arc(p[0],p[1],2.1,0,Math.PI*2); ctx.fillStyle='#ffe4a8'; ctx.fill();
+          ctx.beginPath(); ctx.arc(p[0],p[1],2.1,0,Math.PI*2); ctx.fillStyle='#dffcff'; ctx.fill();
         }
       });
 
-      ctx.beginPath(); path({type:'Sphere'}); ctx.strokeStyle='rgba(223,191,126,.55)'; ctx.lineWidth=1.2; ctx.stroke();
+      ctx.beginPath(); path({type:'Sphere'}); ctx.strokeStyle='rgba(133,222,226,.55)'; ctx.lineWidth=1.2; ctx.stroke();
       ctx.restore();
       if (!reduced) requestAnimationFrame(frame);
     }
