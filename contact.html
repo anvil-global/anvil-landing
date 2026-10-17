@@ -762,6 +762,14 @@
       document.addEventListener('keydown', function (event) { if (event.key === 'Escape') closeMenu(); });
     })();
   </script>
+  <script>
+    (function () {
+      var legal = new URLSearchParams(window.location.search).get('legal');
+      var modalId = { privacy: 'privacy-modal', terms: 'terms-modal', cookies: 'cookies-modal' }[legal];
+      var modal = modalId && document.getElementById(modalId);
+      if (modal) modal.classList.add('open');
+    })();
+  </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
