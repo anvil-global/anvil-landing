@@ -26,6 +26,13 @@
     .capability-ribbon .ribbon-items span:last-child{border-right:1px solid #17171342}
     @media(max-width:850px){.hero{min-height:calc(100svh - 74px)}.hero-globe{height:min(62vh,500px)}.hero-globe #globe{transform:scale(1.12)}.globe-wordmark-img{width:clamp(230px,43vw,360px);top:40%}.hero-center h1{font-size:clamp(18px,3.4vw,25px);letter-spacing:.14em}}
     @media(max-width:640px){.hero{min-height:calc(100svh - 66px)}.hero-grid{padding:0 0 36px}.hero-globe{height:min(54vh,410px);min-height:280px;margin-bottom:-6px}.hero-globe #globe{transform:scale(1.08)}.globe-wordmark-img{width:min(72vw,310px);top:39%}.hero-center h1{max-width:340px;margin:0 12px 22px;font-size:19px;line-height:1.45;letter-spacing:.1em}.hero-center .hero-actions{flex-direction:column;width:min(100%,300px)}.hero-center .btn{width:100%}.academy-link{display:inline-flex!important;min-height:40px;padding:0 12px;font-size:9px}.nav-links{right:0}.capability-ribbon .ribbon-items span:last-child{border-right:0}}
+    .academy-teaser{padding:54px 0;background:var(--paper-2)}
+    .academy-teaser-inner{display:flex;align-items:center;justify-content:space-between;gap:36px}
+    .academy-teaser-copy{max-width:720px}
+    .academy-teaser h2{margin:9px 0 8px;font-size:clamp(30px,3.7vw,44px);line-height:1.08}
+    .academy-teaser p{max-width:600px;margin:0;color:#5e5c55;font-size:14px}
+    .academy-teaser .btn{flex:none}
+    @media(max-width:640px){.academy-teaser{padding:42px 0}.academy-teaser-inner{align-items:flex-start;flex-direction:column;gap:22px}.academy-teaser h2{font-size:37px}}
   </style>
 </head>
 <body>
@@ -34,7 +41,7 @@
       <a class="brand" href="index.html" aria-label="ANVIL Global home"><img src="assets/logo-mark.png" alt=""><span>ANVIL</span></a>
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="#capabilities">Services</a><a href="#approach">Our approach</a><a href="academy.html">Courses</a><a href="#contact">Contact</a>
+        <a href="#capabilities">Capabilities</a><a href="#approach">Our approach</a><a href="academy.html">Training Academy</a><a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -44,7 +51,7 @@
         <div class="hero-center">
           <div class="hero-globe"><canvas id="globe" aria-label="Animated ANVIL globe with illuminated international routes"></canvas><img class="globe-wordmark-img" src="assets/anvil-wordmark.png" alt="ANVIL Global"></div>
           <h1 id="hero-title">Prepared · Protected · Uninterrupted</h1>
-          <div class="hero-actions"><a class="btn" href="#capabilities">View services <span aria-hidden="true">↓</span></a><a class="btn btn-ghost" href="contact.html">Enquire confidentially <span aria-hidden="true">↗</span></a></div>
+          <div class="hero-actions"><a class="btn" href="#capabilities">Explore capabilities <span aria-hidden="true">↓</span></a><a class="btn btn-ghost" href="contact.html">Enquire confidentially <span aria-hidden="true">↗</span></a></div>
         </div>
       </div>
     </section>
@@ -67,7 +74,17 @@
         <div class="approach-list"><div class="approach-item"><b>01</b><span>Understand the person, place and requirements.</span></div><div class="approach-item"><b>02</b><span>Bring relevant protection and support disciplines into the plan.</span></div><div class="approach-item"><b>03</b><span>Coordinate delivery around the agreed brief.</span></div><div class="approach-item"><b>04</b><span>Review the support required as the situation develops.</span></div></div>
       </div>
     </section>
-    <section class="contact-cta" id="contact" aria-labelledby="contact-title"><div class="wrap contact-cta-inner"><div><div class="kicker">Start a conversation</div><h2 class="serif" id="contact-title">Let’s understand what you need.</h2></div><a class="btn" href="contact.html">Enquire confidentially <span aria-hidden="true">↗</span></a></div></section>
+    <section class="academy-teaser" aria-labelledby="academy-title">
+      <div class="wrap academy-teaser-inner">
+        <div class="academy-teaser-copy">
+          <div class="kicker">ANVIL Training Academy</div>
+          <h2 class="serif" id="academy-title">Professional courses. Practical skills.</h2>
+          <p>Explore our security and first-aid courses, upcoming dates and entry requirements.</p>
+        </div>
+        <a class="btn" href="academy.html">Explore courses <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+    <section class="contact-cta" id="contact" aria-labelledby="contact-title"><div class="wrap contact-cta-inner"><div><div class="kicker">Start a conversation</div><h2 class="serif" id="contact-title">Let’s understand what you need.</h2></div><a class="btn" href="contact.html">Start a confidential conversation <span aria-hidden="true">↗</span></a></div></section>
   </main>
   <footer class="footer"><div class="wrap"><div class="footer-grid"><div><div class="footer-brand">ANVIL GLOBAL</div><p>Protection, Encompassed.</p><p>© 2026 ANVIL Global Ltd · Company No. 17370820</p></div><div><p>Enquiries: <a href="mailto:info@anvil-global.com">info@anvil-global.com</a><br>Cherwell A Building, London Oxford Airport, Kidlington, Oxfordshire</p></div></div><div class="footer-bottom"><span>Training course details are a working draft in this preview.</span><span><a href="academy.html">Training Academy</a> · <a href="contact.html#privacy">Privacy</a> · <a href="contact.html#terms">Terms</a> · <a href="#top">Back to top ↑</a></span></div></div></footer>
   <script src="assets/d3.min.js"></script><script src="assets/topojson-client.min.js"></script><script src="assets/anvil-globe.js"></script>
