@@ -1,11 +1,11 @@
 {
   "name": "ANVIL Global",
   "short_name": "ANVIL Global",
-  "description": "Close protection, residential security and technical counter-surveillance delivered to a documented standard.",
+  "description": "ANVIL Global protective services and training courses in security, close protection and first aid.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0E1013",
-  "theme_color": "#0E1013",
+  "theme_color": "#090b0b",
   "icons": [
     {
       "src": "assets/favicon-32.png",
