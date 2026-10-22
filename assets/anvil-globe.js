@@ -24,9 +24,9 @@
       ctx.clearRect(0,0,w,h);
 
       const mobile = w < 720;
-      const radius = mobile ? Math.min(w * .43, h * .26) : Math.min(w * .25, h * .34);
+      const radius = mobile ? Math.min(w * .46, h * .38) : Math.min(w * .3, h * .44);
       const cx = w * .5;
-      const cy = mobile ? h * .31 : h * .40;
+      const cy = h * .5;
       const elapsed = (now - start) / 1000;
       const rotation = reduced ? -12 : -12 - elapsed * 3.2;
       const projection = d3.geoOrthographic().translate([cx,cy]).scale(radius).rotate([rotation,-12,-4]).clipAngle(90).precision(.35);

@@ -9,11 +9,11 @@
 :root{--ink:#0b0d0d;--forest:#14231d;--paper:#f3f1eb;--paper2:#e9e6de;--gold:#c7a064;--gold2:#dfbd7f;--text:#151715;--muted:#625f58;--line:rgba(21,23,21,.16)}
 .kicker{color:#9a763f}.nav{background:rgba(11,13,13,.97)}.nav-links a:hover,.footer a:hover{color:#dfbd7f}
 .hero{background:radial-gradient(ellipse at 50% 35%,#17251e 0,#0d1110 52%,#090b0b 100%)}
-.hero-globe{position:relative;width:min(760px,100%);height:clamp(270px,43vw,430px);margin:0 auto 2px}.hero-globe #globe{width:100%;height:100%}
-.globe-wordmark{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);white-space:nowrap;font:500 clamp(29px,6vw,66px)/1 var(--serif);letter-spacing:.19em;color:#f5f2eb;text-shadow:0 2px 22px #090b0b,0 0 34px #c7a06455;pointer-events:none}
+.hero{overflow:hidden}.hero-globe{position:relative;width:100vw;margin:0 0 0 calc(50% - 50vw);height:clamp(520px,calc(100vh - 150px),900px)}.hero-globe #globe{width:100%;height:100%}
+.globe-wordmark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;font:500 clamp(29px,6vw,66px)/1 var(--serif);letter-spacing:.19em;color:#f5f2eb;text-shadow:0 2px 22px #090b0b,0 0 34px #c7a06455;pointer-events:none}
 .globe-wordmark span{font:700 .28em var(--sans);letter-spacing:.45em;color:#dfbd7f;vertical-align:middle;margin-left:.9em}
 .globe-caption{position:absolute;bottom:3px;left:0;right:0;text-align:center;color:#bdb7a9;font-size:9px;letter-spacing:.19em;text-transform:uppercase}
-.home-hero{padding:28px 0 64px}.home-hero .hero-copy{max-width:760px;margin:0 auto}.home-hero .hero-copy .kicker{color:#dfbd7f}
+.home-hero{padding:0 0 64px}.home-hero .hero-copy{max-width:760px;margin:0 auto}.home-hero .hero-copy .kicker{color:#dfbd7f}
 .home-hero h1{font-size:clamp(39px,6vw,70px);letter-spacing:.005em;color:#dfbd7f;margin:15px 0 18px}
 .home-hero .hero-copy>p{max-width:610px;color:#d3d2cb;font-size:16px;margin:0 auto}.home-hero .hero-actions{justify-content:center}
 .btn{border-color:#c7a064;background:#c7a064;color:#10110f}.btn:hover{background:#dfbd7f;border-color:#dfbd7f}
@@ -48,7 +48,7 @@
 .final-cta .kicker{color:#554225}.final-cta h2{margin:7px 0 0;color:#10110f;font-size:clamp(28px,4vw,42px)}
 .final-cta .btn{background:#101313;color:#dfbd7f;border-color:#101313}.footer{background:#0b0d0d}
 @media(max-width:850px){.preview-course-grid{grid-template-columns:repeat(2,1fr)}.approach-grid{gap:40px}}
-@media(max-width:620px){.hero-globe{height:280px}.globe-caption{font-size:8px;letter-spacing:.1em}.discipline-grid,.approach-grid{grid-template-columns:1fr}.discipline{padding:28px;min-height:0}.discipline-index{margin-bottom:21px}.preview-course-grid{grid-template-columns:1fr 1fr}.preview-course{padding:16px;min-height:190px}.preview-course strong{font-size:20px}.catalogue-link,.final-cta-inner{align-items:flex-start;flex-direction:column}}
+@media(max-width:620px){.hero-globe{height:440px}.globe-caption{font-size:8px;letter-spacing:.1em}.discipline-grid,.approach-grid{grid-template-columns:1fr}.discipline{padding:28px;min-height:0}.discipline-index{margin-bottom:21px}.preview-course-grid{grid-template-columns:1fr 1fr}.preview-course{padding:16px;min-height:190px}.preview-course strong{font-size:20px}.catalogue-link,.final-cta-inner{align-items:flex-start;flex-direction:column}}
 </style></head><body>
 <div class="preview">PREVIEW BUILD · ANVIL GLOBAL</div>
 <header class="nav"><div class="wrap nav-inner"><a class="brand" href="index.html" aria-label="ANVIL Global home"><img src="assets/logo-mark.png" alt=""><span>ANVIL</span></a><button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button><nav class="nav-links" aria-label="Main navigation"><a href="#work">What we do</a><a href="academy.html#courses">Courses</a><a href="academy.html#dates">Course dates</a><a href="#contact">Contact</a></nav><a class="btn nav-cta" href="academy.html#courses">Explore courses</a></div></header>
