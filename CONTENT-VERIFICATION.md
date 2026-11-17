@@ -8,7 +8,7 @@ This is a working draft. All copy has been transcribed from the pack without rew
 
 | URL | Pack pages | Notes |
 |---|---|---|
-| `/` (`index.html`) | pp. 1–2 | Welcome, strapline, the full "Protection Forged In the Heart of the Cotswolds" letter, signature, sign-off. The three path cards reuse only pack headings and lines. |
+| `/` (`index.html`) | pp. 1–2 | Welcome, strapline, the full "Protection Forged In the Heart of the Cotswolds" letter and the typed sign-off. PJ's handwritten signature has been left off on purpose. The three path cards reuse only pack headings and lines. |
 | `/services.html` | pp. 3–12, 22 | "What we do" intro, 8 services in pack order, both Film & TV pages merged into one section, the 8 engagement steps and the p. 22 bespoke-travel WhatsApp CTA. |
 | `/academy.html` | pp. 13–21 | Title pages, sections 01–06, the 2027 dates table, all 12 course cards, the venue, the pathway and booking. Plus the existing mailto enquiry form. |
 | `/access.html` | — (not in pack) | Holding page only: name, in development, early-access email to `info@`. |
@@ -67,7 +67,7 @@ Also check that the course types with no 2027 dates (DS Refresher, Physical Inte
 6. How much may the ANVIL Access coming-soon page say? (Right now it only says the name, that it's in development, and that early access enquiries are welcome.)
 7. Are the current contact-page T&Cs enough, or will new terms be supplied before publishing? Note: the pack puts "Terms and conditions apply" on every page; on the web this now links to the existing website T&Cs, which don't cover service or course terms.
 8. Confirm the pack photography may be used on the public site (Broadway Tower, the eight service images, Matt Greef's headshot).
-9. **Signature:** PJ's handwritten signature (pack p. 2) is published on the homepage, as the brief asked. Please confirm he's happy for it to be public — a public copy of a wet signature can be misused.
+9. **Signature:** PJ's handwritten signature from pack p. 2 has been removed from the site, as requested. Only the typed name and title remain.
 10. Brand casing: the pack uses "Anvil" in body copy, "ANVIL GLOBAL" in the wordmark and "Anvil Global Ltd" in the sign-off; the old legal text uses "ANVIL Global Ltd". Is one form preferred?
 11. The pack and the old site differ on location: "London Oxford Airport" (pack) vs "Oxford Airport, Kidlington" (old legal text). The legal text is unchanged.
 

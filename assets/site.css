@@ -238,7 +238,7 @@ h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
   padding: clamp(24px, 5vw, 56px); margin-top: -1px;
 }
 .letter p { font-size: 1.02rem; max-width: 72ch; }
-.signature { width: 150px; margin: 1.6rem 0 0.4rem; }
+.letter .signoff-name { margin-top: 1.6rem; }
 .signoff-name { font-family: var(--serif); color: var(--ivory); letter-spacing: 0.06em; margin: 0; text-transform: uppercase; font-size: 0.95rem; }
 .signoff-role { font-family: var(--serif); color: var(--gold); letter-spacing: 0.06em; font-size: 0.78rem; text-transform: uppercase; margin: 0; }
 
