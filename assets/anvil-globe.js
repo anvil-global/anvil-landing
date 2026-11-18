@@ -30,27 +30,17 @@
       ctx.setTransform(ratio,0,0,ratio,0,0);
       ctx.clearRect(0,0,w,h);
 
-      // Size the sphere to fit the visible area below the sticky nav, so the
-      // top of the globe is not clipped. Stay as large as that safe area allows.
+      // Fill the contained globe box. If the sticky nav overlaps the canvas,
+      // shrink and shift the sphere so the top is not clipped.
       const headerEl = document.querySelector('.site-header');
       const headerOverlap = headerEl ? Math.max(0, Math.round(headerEl.getBoundingClientRect().bottom - rect.top)) : 0;
-      const padTop = Math.max(16, Math.round(h * 0.02));
-      const padBottom = Math.max(16, Math.round(h * 0.03));
-      const safeTop = headerOverlap + padTop;
-      const safeBottom = h - padBottom;
-      const avail = Math.max(120, safeBottom - safeTop);
-      const radius = Math.min(w * 0.48, avail * 0.5);
+      const pad = Math.max(8, Math.round(Math.min(w, h) * 0.04));
+      const safeTop = headerOverlap + pad;
+      const safeBottom = h - pad;
+      const avail = Math.max(80, safeBottom - safeTop);
+      const radius = Math.min(w, avail) * 0.46;
       const cx = w * 0.5;
-      const cy = safeTop + avail * 0.5;
-      const stage = canvas.closest('.hero-stage');
-      if (stage) {
-        const cyVal = cy + 'px';
-        const rVal = radius + 'px';
-        if (stage.style.getPropertyValue('--globe-cy') !== cyVal || stage.style.getPropertyValue('--globe-r') !== rVal) {
-          stage.style.setProperty('--globe-cy', cyVal);
-          stage.style.setProperty('--globe-r', rVal);
-        }
-      }
+      const cy = headerOverlap > 0 ? (safeTop + avail * 0.5) : (h * 0.5);
       const elapsed = (now - start) / 1000;
       const rotation = reduced ? -12 : -12 - elapsed * 3.2;
       const projection = d3.geoOrthographic().translate([cx,cy]).scale(radius).rotate([rotation,-12,-4]).clipAngle(90).precision(.35);

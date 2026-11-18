@@ -8,7 +8,7 @@ This is a working draft. All copy has been transcribed from the pack without rew
 
 | URL | Pack pages | Notes |
 |---|---|---|
-| `/` (`index.html`) | pp. 1–2 | Full-viewport spinning globe with the pack wordmark over its lower-middle (live-site / earlier-iteration layout). Welcome copy and strapline sit directly under that hero, then the full "Protection Forged In the Heart of the Cotswolds" letter and the typed sign-off. PJ's handwritten signature has been left off on purpose. The three path cards reuse only pack headings and lines. |
+| `/` (`index.html`) | pp. 1–2 | Two-column homepage hero: welcome copy and strapline on the left, spinning globe on the right, with the pack wordmark centred on the globe. Then the full "Protection Forged In the Heart of the Cotswolds" letter and the typed sign-off. PJ's handwritten signature has been left off on purpose. The three path cards reuse only pack headings and lines. |
 | `/services.html` | pp. 3–12, 22 | "What we do" intro, 8 services in pack order, both Film & TV pages merged into one section, the 8 engagement steps and the p. 22 bespoke-travel CTA (now an email button to `info@`, not WhatsApp). |
 | `/academy.html` | pp. 13–21 | Title pages, sections 01–06, the 2027 dates table, all 12 course cards, the venue, the pathway and booking. Plus the existing mailto enquiry form. |
 | `/access.html` | — (not in pack) | Holding page only: name, in development, early-access email to `info@`. |
@@ -25,7 +25,7 @@ This is a working draft. All copy has been transcribed from the pack without rew
 - Engagement step 1 no longer mentions WhatsApp as a public contact method (the rest of the pack wording is unchanged).
 - The p. 22 bespoke-travel CTA and the contact-page CTA are email buttons, not WhatsApp.
 - Contact page lead and meta description are email-only and do not claim 24/7 availability.
-- The homepage spinning globe is restored from the live site (`assets/anvil-globe.js` and local geography) as a full-viewport first screen, with the existing pack wordmark over the lower-middle of the globe (same placement idea as the live typographic wordmark at `top: 60%`). Welcome copy sits immediately below (the Services / Academy buttons were removed from the hero; those links stay in the nav and the path cards). On mobile a “Scroll” cue links to `#welcome` and the welcome heading peeks into the first screen. The Academy page still uses the static pack globe image.
+- The homepage spinning globe is restored from the live site (`assets/anvil-globe.js` and local geography) in a two-column hero: welcome copy on the left, globe on the right, with the pack wordmark centred on the globe. The Services / Academy buttons stay out of the hero (those links remain in the nav and the path cards). The Academy page still uses the static pack globe image.
 - The Academy form labels, the date choices (Jan–Apr 2027 / First available / Flexible) and the consent line come from the old `academy.html`, not the pack.
 - Contact form service list = the 8 pack services + "Training / Academy" + "Not sure / Other". Removed: Technical Travel Protection, Security Driving / Secure Chauffeuring, Asset Protection & Secure Delivery, International Retrieval, Threat & Risk Assessments, Medical Support.
 - If the contact form fails to send, the error message still points people to `info@anvil-global.com`, as the old site did.
