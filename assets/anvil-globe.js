@@ -30,7 +30,7 @@
       ctx.setTransform(ratio,0,0,ratio,0,0);
       ctx.clearRect(0,0,w,h);
 
-      // Fill the homepage container (a roughly square box), not the old full-bleed hero.
+      // Full-viewport hero: fill most of the shorter axis so the globe dominates the first screen.
       const radius = Math.min(w, h) * 0.46;
       const cx = w * .5;
       const cy = h * .5;

@@ -218,36 +218,34 @@ h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
 .draft-notice strong { color: var(--gold); text-transform: uppercase; letter-spacing: 0.14em; }
 
 /* ---------- Home ---------- */
-.hero { position: relative; overflow: hidden; padding: clamp(40px, 8vw, 96px) 0 clamp(56px, 9vw, 112px); }
-.hero-inner { display: grid; gap: clamp(24px, 5vw, 48px); align-items: center; }
-@media (min-width: 900px) {
-  .hero { min-height: 640px; }
-  .hero-inner { grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr); }
-}
-.hero-globe {
-  position: absolute; right: -8%; bottom: -6%; width: min(62vw, 640px); z-index: 0; opacity: 0.5;
-  -webkit-mask-image: radial-gradient(closest-side at 60% 55%, #000 72%, transparent 100%);
-          mask-image: radial-gradient(closest-side at 60% 55%, #000 72%, transparent 100%);
-  pointer-events: none;
-}
-.hero-wordmark { width: min(78vw, 440px); margin-bottom: clamp(28px, 5vw, 48px); }
-.hero h1 { max-width: 14ch; }
-.hero-intro { max-width: 46ch; color: var(--gold); font-family: var(--serif); font-size: clamp(1rem, 2vw, 1.15rem); letter-spacing: 0.03em; line-height: 1.7; }
-.hero .strap { margin: 1.6rem 0 2.2rem; }
-@media (min-width: 900px) { .hero-globe { opacity: 1; right: -4%; bottom: -10%; } }
-
-/* Homepage spinning globe (live-site renderer, contained to fit this hero) */
-.home-globe {
+/* Full-viewport globe hero, as on the live site and redesign/global-first-homepage.
+   Pulled up under the sticky header so the first screen is 100svh/100dvh of globe,
+   with the wordmark over the lower-middle of the sphere. */
+.hero-stage {
   position: relative;
-  width: min(72vw, 420px);
-  aspect-ratio: 1;
-  margin: 0 auto;
+  margin-top: calc(-1 * var(--header-h));
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 42%, #15221c 0%, #0c100f 46%, #080a0a 78%);
+}
+.home-globe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   pointer-events: none;
 }
 .home-globe::before {
   content: "";
   position: absolute;
-  inset: 8%;
+  left: 50%;
+  top: 50%;
+  width: min(80vmin, 780px);
+  height: min(80vmin, 780px);
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(177, 142, 83, 0.28) 0%, rgba(106, 99, 58, 0.1) 36%, transparent 70%);
   filter: blur(12px);
@@ -259,15 +257,58 @@ h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center;
   display: block;
 }
 .home-globe-fallback[hidden] { display: none; }
-@media (min-width: 900px) {
-  .home-globe { width: 100%; max-width: 640px; margin: 0 0 0 auto; }
+
+/* Wordmark sits over the lower-middle of the globe, like the live-site treatment (top: 60%). */
+.globe-wordmark {
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  z-index: 1;
+  margin: 0;
+  width: clamp(230px, 36vw, 430px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  text-align: center;
 }
-@media (max-width: 899px) {
-  .home-globe { order: -1; width: min(78vw, 360px); }
+.globe-wordmark img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 18px rgba(6, 10, 8, 0.75));
 }
+@media (max-width: 640px) {
+  .globe-wordmark { width: min(78vw, 320px); top: 58%; }
+}
+
+/* Welcome copy and the two primary CTAs sit directly under the full-screen globe. */
+.hero-intro-block {
+  text-align: center;
+  padding: clamp(48px, 8vw, 96px) 0 clamp(56px, 9vw, 112px);
+}
+.hero-intro-block h1 { max-width: 14ch; margin-left: auto; margin-right: auto; }
+.hero-lead {
+  max-width: 46ch;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  letter-spacing: 0.03em;
+  line-height: 1.7;
+}
+.hero-intro-block .strap { margin: 1.6rem auto 2.2rem; }
+
+/* Academy decorative globe (static pack image) — unchanged from the welcome-pack build */
+.hero-globe {
+  position: absolute; right: -8%; bottom: -6%; width: min(62vw, 640px); z-index: 0; opacity: 0.5;
+  -webkit-mask-image: radial-gradient(closest-side at 60% 55%, #000 72%, transparent 100%);
+          mask-image: radial-gradient(closest-side at 60% 55%, #000 72%, transparent 100%);
+  pointer-events: none;
+}
+@media (min-width: 900px) { .hero-globe { opacity: 1; right: -4%; bottom: -10%; } }
 
 .letter-photo { width: 100%; aspect-ratio: 1280 / 438; object-fit: cover; border: 1px solid var(--line); }
 .letter {
