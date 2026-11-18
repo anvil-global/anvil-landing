@@ -218,9 +218,9 @@ h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
 .draft-notice strong { color: var(--gold); text-transform: uppercase; letter-spacing: 0.14em; }
 
 /* ---------- Home ---------- */
-/* Full-viewport globe hero, as on the live site and redesign/global-first-homepage.
-   Pulled up under the sticky header so the first screen is 100svh/100dvh of globe,
-   with the wordmark over the lower-middle of the sphere. */
+/* Full-viewport globe hero, pulled up under the sticky header.
+   --globe-cy / --globe-r are set by anvil-globe.js so the wordmark and glow
+   stay on the sphere after it is sized to clear the nav. */
 .hero-stage {
   position: relative;
   margin-top: calc(-1 * var(--header-h));
@@ -229,6 +229,8 @@ h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
   height: 100dvh;
   overflow: hidden;
   background: radial-gradient(ellipse at 50% 42%, #15221c 0%, #0c100f 46%, #080a0a 78%);
+  --globe-cy: 54%;
+  --globe-r: 40vmin;
 }
 .home-globe {
   position: absolute;
@@ -242,9 +244,9 @@ h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
   content: "";
   position: absolute;
   left: 50%;
-  top: 50%;
-  width: min(80vmin, 780px);
-  height: min(80vmin, 780px);
+  top: var(--globe-cy);
+  width: calc(var(--globe-r) * 2.2);
+  height: calc(var(--globe-r) * 2.2);
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(177, 142, 83, 0.28) 0%, rgba(106, 99, 58, 0.1) 36%, transparent 70%);
@@ -262,11 +264,11 @@ h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
 }
 .home-globe-fallback[hidden] { display: none; }
 
-/* Wordmark sits over the lower-middle of the globe, like the live-site treatment (top: 60%). */
+/* Wordmark sits over the lower-middle of the sphere. */
 .globe-wordmark {
   position: absolute;
   left: 50%;
-  top: 60%;
+  top: calc(var(--globe-cy) + var(--globe-r) * 0.18);
   z-index: 1;
   margin: 0;
   width: clamp(230px, 36vw, 430px);
@@ -280,10 +282,10 @@ h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
   filter: drop-shadow(0 2px 18px rgba(6, 10, 8, 0.75));
 }
 @media (max-width: 640px) {
-  .globe-wordmark { width: min(78vw, 320px); top: 58%; }
+  .globe-wordmark { width: min(78vw, 320px); }
 }
 
-/* Welcome copy and the two primary CTAs sit directly under the full-screen globe. */
+/* Welcome copy sits directly under the globe hero. */
 .hero-intro-block {
   text-align: center;
   padding: clamp(48px, 8vw, 96px) 0 clamp(56px, 9vw, 112px);
@@ -299,7 +301,43 @@ h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
   letter-spacing: 0.03em;
   line-height: 1.7;
 }
-.hero-intro-block .strap { margin: 1.6rem auto 2.2rem; }
+.hero-intro-block .strap { margin: 1.6rem auto 0; }
+
+/* Mobile: shorten the hero so the welcome heading peeks, and add a scroll cue. */
+.hero-scroll { display: none; }
+@media (max-width: 899px) {
+  .hero-stage {
+    height: auto;
+    min-height: calc(100vh - 9rem);
+    min-height: calc(100svh - 9rem);
+    min-height: calc(100dvh - 9rem);
+  }
+  .hero-intro-block { padding-top: 1.25rem; }
+  .hero-scroll {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0.85rem;
+    z-index: 2;
+    transform: translateX(-50%);
+    color: var(--gold);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .hero-scroll:hover, .hero-scroll:focus-visible { color: var(--ivory); }
+  .hero-scroll-icon { width: 16px; height: 16px; display: block; }
+  .hero-scroll-icon { animation: hero-scroll-nudge 2.2s ease-in-out infinite; }
+}
+@keyframes hero-scroll-nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
 
 /* Academy decorative globe (static pack image) — unchanged from the welcome-pack build */
 .hero-globe {

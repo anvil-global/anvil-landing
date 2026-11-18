@@ -30,10 +30,27 @@
       ctx.setTransform(ratio,0,0,ratio,0,0);
       ctx.clearRect(0,0,w,h);
 
-      // Full-viewport hero: fill most of the shorter axis so the globe dominates the first screen.
-      const radius = Math.min(w, h) * 0.46;
-      const cx = w * .5;
-      const cy = h * .5;
+      // Size the sphere to fit the visible area below the sticky nav, so the
+      // top of the globe is not clipped. Stay as large as that safe area allows.
+      const headerEl = document.querySelector('.site-header');
+      const headerOverlap = headerEl ? Math.max(0, Math.round(headerEl.getBoundingClientRect().bottom - rect.top)) : 0;
+      const padTop = Math.max(16, Math.round(h * 0.02));
+      const padBottom = Math.max(16, Math.round(h * 0.03));
+      const safeTop = headerOverlap + padTop;
+      const safeBottom = h - padBottom;
+      const avail = Math.max(120, safeBottom - safeTop);
+      const radius = Math.min(w * 0.48, avail * 0.5);
+      const cx = w * 0.5;
+      const cy = safeTop + avail * 0.5;
+      const stage = canvas.closest('.hero-stage');
+      if (stage) {
+        const cyVal = cy + 'px';
+        const rVal = radius + 'px';
+        if (stage.style.getPropertyValue('--globe-cy') !== cyVal || stage.style.getPropertyValue('--globe-r') !== rVal) {
+          stage.style.setProperty('--globe-cy', cyVal);
+          stage.style.setProperty('--globe-r', rVal);
+        }
+      }
       const elapsed = (now - start) / 1000;
       const rotation = reduced ? -12 : -12 - elapsed * 3.2;
       const projection = d3.geoOrthographic().translate([cx,cy]).scale(radius).rotate([rotation,-12,-4]).clipAngle(90).precision(.35);
