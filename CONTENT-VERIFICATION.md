@@ -9,18 +9,23 @@ This is a working draft. All copy has been transcribed from the pack without rew
 | URL | Pack pages | Notes |
 |---|---|---|
 | `/` (`index.html`) | pp. 1–2 | Welcome, strapline, the full "Protection Forged In the Heart of the Cotswolds" letter and the typed sign-off. PJ's handwritten signature has been left off on purpose. The three path cards reuse only pack headings and lines. |
-| `/services.html` | pp. 3–12, 22 | "What we do" intro, 8 services in pack order, both Film & TV pages merged into one section, the 8 engagement steps and the p. 22 bespoke-travel WhatsApp CTA. |
+| `/services.html` | pp. 3–12, 22 | "What we do" intro, 8 services in pack order, both Film & TV pages merged into one section, the 8 engagement steps and the p. 22 bespoke-travel CTA (now an email button to `info@`, not WhatsApp). |
 | `/academy.html` | pp. 13–21 | Title pages, sections 01–06, the 2027 dates table, all 12 course cards, the venue, the pathway and booking. Plus the existing mailto enquiry form. |
 | `/access.html` | — (not in pack) | Holding page only: name, in development, early-access email to `info@`. |
 | `/contact.html` | p. 23 + existing legal | Pack contact block, the existing Formspree form (same endpoint), and the Privacy, Terms and Cookie text ported word for word from the old `contact.html`. |
-| Footer (all pages) | p. 23 | Phone/WhatsApp, PJ email, location, Anvil-global.com, strapline, PJ name/title, Anvil Global Ltd, "Forged In The Cotswolds" mark. Also company no. 17370820 and legal links. "Terms and conditions apply" (on every pack page) links to `/contact.html#terms`. |
+| Footer (all pages) | p. 23 | Public email (`info@anvil-global.com`), location, Anvil-global.com, strapline, PJ name/title (name only — no personal contact details), Anvil Global Ltd, "Forged In The Cotswolds" mark. Also company no. 17370820 and legal links. "Terms and conditions apply" (on every pack page) links to `/contact.html#terms`. PJ's phone, WhatsApp and personal email have been removed at Brandon's request. |
 
 ## Small adaptations from print to web (please check)
 
 - SEC-03 "Or combine with FREC 3, page 07" → "Or combine with FREC 3", linked to the pathway section. Page numbers don't apply on the web.
 - On the Academy page, "Approved centre." is kept word for word, but the pack doesn't say approved by whom.
 - Film & TV: the two pack pages are combined into one service section with a single "Email us" button.
-- Service "Email us" buttons go to `pjblackburn@anvil-global.com` with the subject `Enquiry: <service name>`.
+- Service "Email us" buttons go to `info@anvil-global.com` with the subject `Enquiry: <service name>`.
+- The pack intro "contact me personally at [PJ's email]" is now "contact us at info@anvil-global.com".
+- Engagement step 1 no longer mentions WhatsApp as a public contact method (the rest of the pack wording is unchanged).
+- The p. 22 bespoke-travel CTA and the contact-page CTA are email buttons, not WhatsApp.
+- Contact page lead and meta description are email-only and do not claim 24/7 availability.
+- The homepage spinning globe is restored from the live site (`assets/anvil-globe.js` and local geography); the Academy page still uses the static pack globe image.
 - The Academy form labels, the date choices (Jan–Apr 2027 / First available / Flexible) and the consent line come from the old `academy.html`, not the pack.
 - Contact form service list = the 8 pack services + "Training / Academy" + "Not sure / Other". Removed: Technical Travel Protection, Security Driving / Secure Chauffeuring, Asset Protection & Secure Delivery, International Retrieval, Threat & Risk Assessments, Medical Support.
 - If the contact form fails to send, the error message still points people to `info@anvil-global.com`, as the old site did.
@@ -59,9 +64,9 @@ Also check that the course types with no 2027 dates (DS Refresher, Physical Inte
 
 ## Open questions (do not guess)
 
-1. Should the public site keep showing PJ's personal email and `+44 7562 850658` / 24/7 WhatsApp, or should public enquiries go to `info@` (and Academy enquiries to `training@`)?
+1. **Answered (18 Nov 2026):** public contact is `info@anvil-global.com` only. PJ's personal email, mobile and WhatsApp have been removed site-wide. `training@anvil-global.com` has also been replaced with `info@` (Brandon asked to use `info@` only). PJ's typed name and title on the letter and in the footer are unchanged.
 2. Is "Between us we have more than 20 years of experience" confirmed as the team's combined experience? It has been kept word for word and not turned into a claim about the company's age.
-3. Are `info@anvil-global.com` and `training@anvil-global.com` live and monitored? Is "24/7" accurate?
+3. Is `info@anvil-global.com` live and monitored? The pack's "24/7" claim has been taken off the contact page and meta description until someone confirms it. Do not put it back without that confirmation.
 4. Academy sign-off — see the checklist above.
 5. Should the Academy draft notice stay until Matt Greef / PJ sign off? (It is in place now.)
 6. How much may the ANVIL Access coming-soon page say? (Right now it only says the name, that it's in development, and that early access enquiries are welcome.)

@@ -89,4 +89,15 @@
         encodeURIComponent('Course enquiry: ' + f.get('course')) + '&body=' + encodeURIComponent(body);
     });
   }
+
+  // Homepage spinning globe (same renderer as the live site, no inline script)
+  var globe = document.getElementById('globe');
+  if (globe && typeof window.startAnvilGlobe === 'function') {
+    Promise.resolve(window.startAnvilGlobe(globe)).then(function () {
+      var fallback = document.querySelector('.home-globe-fallback');
+      if (fallback) fallback.hidden = true;
+    }).catch(function () {
+      // Leave the static pack globe visible if the canvas fails to start.
+    });
+  }
 })();
