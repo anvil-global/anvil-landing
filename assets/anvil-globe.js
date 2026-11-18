@@ -7,7 +7,10 @@
 
   window.startAnvilGlobe = async function (canvas) {
     const ctx = canvas.getContext('2d');
-    const world = await fetch('assets/countries-110m.json').then(r => r.json());
+    const world = await fetch('/assets/countries-110m.json').then(r => {
+      if (!r.ok) throw new Error('Failed to load globe geography');
+      return r.json();
+    });
     const land = topojson.feature(world, world.objects.land);
     const borders = topojson.mesh(world, world.objects.countries, (a,b) => a !== b);
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -17,16 +20,27 @@
       const rect = canvas.getBoundingClientRect();
       const ratio = Math.min(devicePixelRatio || 1, 2);
       const w = Math.round(rect.width), h = Math.round(rect.height);
+      if (!w || !h) {
+        if (!reduced) requestAnimationFrame(frame);
+        return;
+      }
       if (canvas.width !== w * ratio || canvas.height !== h * ratio) {
         canvas.width = w * ratio; canvas.height = h * ratio;
       }
       ctx.setTransform(ratio,0,0,ratio,0,0);
       ctx.clearRect(0,0,w,h);
 
-      const mobile = w < 720;
-      const radius = mobile ? Math.min(w * .46, h * .38) : Math.min(w * .3, h * .44);
-      const cx = w * .5;
-      const cy = h * .5;
+      // Fill the contained globe box. If the sticky nav overlaps the canvas,
+      // shrink and shift the sphere so the top is not clipped.
+      const headerEl = document.querySelector('.site-header');
+      const headerOverlap = headerEl ? Math.max(0, Math.round(headerEl.getBoundingClientRect().bottom - rect.top)) : 0;
+      const pad = Math.max(8, Math.round(Math.min(w, h) * 0.04));
+      const safeTop = headerOverlap + pad;
+      const safeBottom = h - pad;
+      const avail = Math.max(80, safeBottom - safeTop);
+      const radius = Math.min(w, avail) * 0.46;
+      const cx = w * 0.5;
+      const cy = headerOverlap > 0 ? (safeTop + avail * 0.5) : (h * 0.5);
       const elapsed = (now - start) / 1000;
       const rotation = reduced ? -12 : -12 - elapsed * 3.2;
       const projection = d3.geoOrthographic().translate([cx,cy]).scale(radius).rotate([rotation,-12,-4]).clipAngle(90).precision(.35);
@@ -65,5 +79,6 @@
       if (!reduced) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
+    if (reduced) window.addEventListener('resize', function () { requestAnimationFrame(frame); }, { passive: true });
   };
 })();
